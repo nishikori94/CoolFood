@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Cool Food</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="register">Register</string>
+    <string name="signIn">Already Cool? Sign in here.</string>
+    <string name="signUp">Don\'t have an account? Sign up now and be Cool!</string>
+    <string name="login">Login</string>
+    <string name="nav_stores">Stores</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_favourites">Favourites</string>
+    <string name="nav_more">More</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search</string>
+    <string name="orders">Orders</string>
+    <string name="account">Account</string>
+</resources>

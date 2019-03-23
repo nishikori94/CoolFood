@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1031797518008",
+    "firebase_url": "https://cool-food-9d3ec.firebaseio.com",
+    "project_id": "cool-food-9d3ec",
+    "storage_bucket": "cool-food-9d3ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031797518008:android:c2818bbd0b5d9eeb",
+        "android_client_info": {
+          "package_name": "com.example.coolfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031797518008-abf9hbtg1tum7mpddf658o8q4taqb9oe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coolfood",
+            "certificate_hash": "57845817ece89708e7e6f039b708d564c38dd9e5"
+          }
+        },
+        {
+          "client_id": "1031797518008-h0vp0rg8ea44a38ruuqnaupj8sv1vtfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLJ9lwcrtokmjYeWubtTUL95HgK4D7a_E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031797518008-h0vp0rg8ea44a38ruuqnaupj8sv1vtfq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

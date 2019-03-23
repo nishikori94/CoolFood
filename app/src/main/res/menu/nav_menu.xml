@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/stores_item"
+        android:icon="@drawable/baseline_store_black_24dp"
+        android:title="@string/nav_stores" />
+    <item
+        android:id="@+id/map_item"
+        android:icon="@drawable/baseline_location_on_black_24dp"
+        android:title="@string/nav_map" />
+    <item
+        android:id="@+id/favourites_item"
+        android:icon="@drawable/baseline_star_black_24dp"
+        android:title="@string/nav_favourites" />
+    <item
+        android:id="@+id/orders_item"
+        android:icon="@drawable/orders_img"
+        android:title="@string/orders" />
+    <item
+        android:id="@+id/account_item"
+        android:actionLayout="@drawable/baseline_star_black_24dp"
+        android:title="@string/account"
+        android:visible="true"/>
+</menu>
