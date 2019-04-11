@@ -1,5 +1,6 @@
 package com.example.coolfood;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class OffersActivity extends AppCompatActivity {
+public class OffersActivity extends AppCompatActivity implements OfferAdapter.OnOfferListener {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -35,10 +36,17 @@ public class OffersActivity extends AppCompatActivity {
             offers.add(offer);
         }
 
-        adapter= new OfferAdapter(offers,this);
+        adapter= new OfferAdapter(offers,this, this);
         recyclerView.setAdapter(adapter);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onOfferClick(int position) {
+        offers.get(position);
+        Intent intent = new Intent(this, OfferDetailsActivity.class);       //Ovde ide putExtra
+        startActivity(intent);
     }
 }
