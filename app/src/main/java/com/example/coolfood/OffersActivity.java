@@ -1,5 +1,6 @@
 package com.example.coolfood;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,5 +37,8 @@ public class OffersActivity extends AppCompatActivity {
 
         adapter= new OfferAdapter(offers,this);
         recyclerView.setAdapter(adapter);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 }
