@@ -44,14 +44,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         viewHolder.imageView.setImageResource(restaurant.getImgUrl());
 
         viewHolder.infoImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "safafasa  " + restaurant.getName(), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, StoreDetailsActivity.class);
-                context.startActivity(intent);
-            }
-        });
-    }
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, StoreDetailsActivity.class);
+            context.startActivity(intent);
+        }
+    });
+}
 
     @Override
     public int getItemCount() {

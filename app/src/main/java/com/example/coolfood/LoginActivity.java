@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         if(v == signUpTextView){
             //finish(); // proveriti tacno sta znaci finish()
+
             Intent signUpIntent = new Intent(this, SignUpActivity.class);
             startActivity(signUpIntent);
         }
