@@ -23,17 +23,19 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
      private List<Restaurant> restaurantList;
      private Context context;
      private ImageButton infoImageButton;
+     private OnRestaurantListener aOnRestaurantListener;
 
-    public RestaurantAdapter(List<Restaurant> restaurantList, Context context) {
+    public RestaurantAdapter(List<Restaurant> restaurantList, Context context, OnRestaurantListener onRestaurantListener) {
         this.restaurantList = restaurantList;
         this.context = context;
+        this.aOnRestaurantListener=onRestaurantListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.store_in_list_layout, viewGroup, false);
-        return new ViewHolder(v);
+        return new ViewHolder(v,aOnRestaurantListener);
     }
 
     @Override
@@ -57,22 +59,34 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         return restaurantList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView nameTV;
         public TextView descriptionTV;
         public ImageView imageView;
         public ImageButton infoImageButton;
+        OnRestaurantListener onRestaurantListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnRestaurantListener onRestaurantListener) {
             super(itemView);
 
             nameTV = itemView.findViewById(R.id.restaurantName);
             descriptionTV = itemView.findViewById(R.id.restaurantDesc);
             imageView = itemView.findViewById(R.id.restaurantImage);
             infoImageButton = itemView.findViewById(R.id.infoButton);
+            this.onRestaurantListener=onRestaurantListener;
+
+            itemView.setOnClickListener(this);
         }
 
 
+        @Override
+        public void onClick(View v) {
+
+            onRestaurantListener.onRestaurantClick(getAdapterPosition());
+        }
+    }
+    public interface OnRestaurantListener{
+        void onRestaurantClick(int position);
     }
 }

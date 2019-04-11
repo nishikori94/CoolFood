@@ -1,6 +1,7 @@
 package com.example.coolfood;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,7 +30,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestaurantListFragment extends Fragment {
+public class RestaurantListFragment extends Fragment implements RestaurantAdapter.OnRestaurantListener {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -52,7 +53,7 @@ public class RestaurantListFragment extends Fragment {
         restaurantList.add(new Restaurant("Restoran 2", "Opis 2 v Opis 2 Opis 2 Opis 2Opis 2Opis 2", R.drawable.restaurant));
         restaurantList.add(new Restaurant("Restoran 3", "Opis 3 Opis 3 Opis 3 Opis 3 Opis 3 Opis 3", R.drawable.restaurant));
 
-        adapter = new RestaurantAdapter(restaurantList, getContext());
+        adapter = new RestaurantAdapter(restaurantList, getContext(),this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -71,4 +72,10 @@ public class RestaurantListFragment extends Fragment {
     }
 
 
+    @Override
+    public void onRestaurantClick(int position) {
+        restaurantList.get(position);
+        Intent intent = new Intent(getContext(),OffersActivity.class);      //Ovde ide putExtra ko na UPP
+        startActivity(intent);
+    }
 }
