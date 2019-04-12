@@ -30,6 +30,9 @@ public class OffersActivity extends AppCompatActivity implements OfferAdapter.On
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        ActionBar actionBar = this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         offers = new ArrayList<>();
         for (int i=0; i<5; i++){
             Offer offer = new Offer(i, "Offer "+(i+1), Integer.toString(20+i)+":30",Integer.toString(21+i), (i+1)*100);
@@ -39,8 +42,7 @@ public class OffersActivity extends AppCompatActivity implements OfferAdapter.On
         adapter= new OfferAdapter(offers,this, this);
         recyclerView.setAdapter(adapter);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

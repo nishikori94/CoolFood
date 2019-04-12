@@ -14,11 +14,10 @@
         android:title="@string/nav_favourites" />
     <item
         android:id="@+id/orders_item"
-        android:icon="@drawable/orders_img"
+        android:icon="@drawable/outline_list_black_24dp"
         android:title="@string/orders" />
     <item
         android:id="@+id/account_item"
-        android:actionLayout="@drawable/baseline_star_black_24dp"
-        android:title="@string/account"
-        android:visible="true"/>
+        android:icon="@drawable/outline_account_circle_black_24dp"
+        android:title="@string/account"/>
 </menu>
