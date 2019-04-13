@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.coolfood.adapter.OrderAdapter;
+import com.example.coolfood.adapter.OrdersActiveAdapter;
 import com.example.coolfood.model.Order;
 
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ public class OrdersActiveFragment extends Fragment {
         orderList.add(new Order("Restoran 3 - Nis", "13:00", "13:15"));
         orderList.add(new Order("Restoran 4 - Novi Sad", "16:00", "17:15"));
 
-        adapter = new OrderAdapter(orderList, getContext());
+        adapter = new OrdersActiveAdapter(orderList, getContext());
         recyclerView.setAdapter(adapter);
 
         return v;

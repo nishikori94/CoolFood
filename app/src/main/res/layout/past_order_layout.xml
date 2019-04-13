@@ -17,27 +17,27 @@
             >
 
             <TextView
-                android:id="@+id/storeName"
+                android:id="@+id/storeNamePO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BLA BLA BLA BLA BLA" />
 
             <TextView
-                android:id="@+id/pickupTime"
+                android:id="@+id/orderDatePO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_below="@id/storeName"
-                android:layout_alignStart="@+id/storeName"
-                android:text="pickup time" />
+                android:layout_below="@id/storeNamePO"
+                android:layout_alignStart="@+id/storeNamePO"
+                android:text="order date" />
 
             <ImageButton
-                android:id="@+id/qrCodeIcon"
+                android:id="@+id/reviewOrderButton"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@+id/storeName"
-                android:layout_alignBottom="@+id/pickupTime"
-                android:src="@drawable/qrcode"
+                android:layout_alignTop="@+id/storeNamePO"
+                android:layout_alignBottom="@+id/orderDatePO"
+                android:src="@drawable/baseline_add_comment_black_24dp"
                 android:layout_alignParentRight="true"
                 android:scaleType="centerInside"
                 android:background="@android:color/transparent"

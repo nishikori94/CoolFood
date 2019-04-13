@@ -13,12 +13,12 @@ import com.example.coolfood.model.Order;
 
 import java.util.List;
 
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
+public class OrdersActiveAdapter extends RecyclerView.Adapter<OrdersActiveAdapter.ViewHolder> {
 
     private List<Order> orderList;
     private Context context;
 
-    public OrderAdapter(List<Order> orderList, Context context) {
+    public OrdersActiveAdapter(List<Order> orderList, Context context) {
         this.orderList = orderList;
         this.context = context;
     }
@@ -38,13 +38,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public OrderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public OrdersActiveAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.active_order_layout, viewGroup, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull OrdersActiveAdapter.ViewHolder viewHolder, int i) {
         Order order = orderList.get(i);
         viewHolder.storeName.setText(order.getStoreName());
         viewHolder.pickupTime.setText(order.getPickupFrom() + " - " + order.getGetPickupUntil());
