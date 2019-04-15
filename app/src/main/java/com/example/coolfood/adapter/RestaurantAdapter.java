@@ -22,7 +22,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
      private List<Restaurant> restaurantList;
      private Context context;
-     private ImageButton infoImageButton;
      private OnRestaurantListener aOnRestaurantListener;
 
     public RestaurantAdapter(List<Restaurant> restaurantList, Context context, OnRestaurantListener onRestaurantListener) {

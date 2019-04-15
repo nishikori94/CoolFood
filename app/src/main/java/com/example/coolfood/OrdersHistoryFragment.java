@@ -1,6 +1,7 @@
 package com.example.coolfood;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrdersHistoryFragment extends Fragment {
+public class OrdersHistoryFragment extends Fragment implements OrdersHistoryAdapter.OnOrderToReviewListener {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -47,10 +48,17 @@ public class OrdersHistoryFragment extends Fragment {
         orderList.add(new Order("Restoran 1 - Novi Sad", "31.04.2019.", false));
         orderList.add(new Order("Restoran 1 - Novi Sad", "21.02.2018.", true));
 
-        adapter = new OrdersHistoryAdapter(orderList, getContext());
+        adapter = new OrdersHistoryAdapter(orderList, getContext(), this);
         recyclerView.setAdapter(adapter);
 
         return v;
     }
 
+
+    @Override
+    public void onOrderToReviewClick(int position) {
+        orderList.get(position);
+        Intent intent = new Intent(getContext(), ReviewActivity.class);      //Ovde ide putExtra ko na UPP
+        startActivity(intent);
+    }
 }

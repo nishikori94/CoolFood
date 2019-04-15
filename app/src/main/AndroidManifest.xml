@@ -11,14 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CheckoutActivity" android:parentActivityName=".OfferDetailsActivity"></activity>
+        <activity android:name=".ReviewActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            ></activity>
         <activity
-            android:name=".OfferDetailsActivity" android:parentActivityName=".OffersActivity"
-             />
+            android:name=".CheckoutActivity"
+            android:parentActivityName=".OfferDetailsActivity" />
+        <activity
+            android:name=".OfferDetailsActivity"
+            android:parentActivityName=".OffersActivity" />
         <activity android:name=".StoreDetailsActivity" />
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -31,7 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OffersActivity" android:parentActivityName=".HomeActivity" ></activity>
+        <activity
+            android:name=".OffersActivity"
+            android:parentActivityName=".HomeActivity" />
     </application>
 
 </manifest>

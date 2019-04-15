@@ -42,8 +42,14 @@ public class OrdersFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
     private void setupViewPager(ViewPager viewPager){
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
         sectionsPagerAdapter.addFragment(new OrdersActiveFragment(), "Active");
         sectionsPagerAdapter.addFragment(new OrdersHistoryFragment(), "History");
         viewPager.setAdapter(sectionsPagerAdapter);
