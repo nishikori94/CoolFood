@@ -33,7 +33,6 @@ public class HomeActivity extends AppCompatActivity {
     private AccountFragment accountFragment;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +47,8 @@ public class HomeActivity extends AppCompatActivity {
         frameLayout = findViewById(R.id.main_frame);
         navigationView = findViewById(R.id.bottom_navigation_id);
 
-        setFragment(restaurantListFragment);
+        if (savedInstanceState == null)
+            setFragment(restaurantListFragment);
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

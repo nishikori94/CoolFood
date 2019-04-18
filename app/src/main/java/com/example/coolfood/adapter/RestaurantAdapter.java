@@ -85,6 +85,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
             onRestaurantListener.onRestaurantClick(getAdapterPosition());
         }
     }
+
     public interface OnRestaurantListener{
         void onRestaurantClick(int position);
     }

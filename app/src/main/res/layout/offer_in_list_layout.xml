@@ -8,10 +8,10 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/cardview_default_elevation">
+        android:layout_margin="4dp">
 
         <LinearLayout
-            android:padding="@dimen/cardview_default_elevation"
+            android:padding="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">

@@ -31,9 +31,9 @@ public class StoreDetailsActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.reviewsRecyclerView);
         reviewList = new ArrayList<>();
-        reviewList.add(new Review("Milos Nisic", "Ocaj zivi. Nasao dlaku u prasetini."));
-        reviewList.add(new Review("Vuk Boskovic", "Odlicno! Obozavam skembice"));
-        reviewList.add(new Review("Bojan Sovljanski", "Fuj! Kako mozete da jedete jadne zivotinje. GO VEGAN!"));
+        reviewList.add(new Review("Milos Nisic", "FAN TAZIJA"));
+        reviewList.add(new Review("Vuk Boskovic", "Odlicno! Bas je bilo superiska"));
+        reviewList.add(new Review("Bojan Sovljanski", "Sve preporuke"));
 
         adapter = new ReviewAdapter(reviewList, this);
         recyclerView.setAdapter(adapter);
