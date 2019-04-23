@@ -38,7 +38,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> 
         Offer offer = offers.get(i);
 
         viewHolder.textPickup.setText(offer.getPickupFrom()+" - " + offer.getUntil());
-        viewHolder.textPrice.setText(Double.toString(offer.getPrice()) + " dinala");
+        viewHolder.textPrice.setText(Double.toString(offer.getPrice()) + " dinara");
         viewHolder.textQuantity.setText("Preostalo " + Integer.toString(offer.getQuantity()));
         viewHolder.textName.setText(offer.getName());
 

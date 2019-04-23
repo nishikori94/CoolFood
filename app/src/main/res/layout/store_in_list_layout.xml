@@ -48,7 +48,6 @@
                     android:id="@+id/restaurantImage"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:background="@color/colorPrimary"
                     android:scaleType="center" />
             </RelativeLayout>
 

@@ -12,7 +12,7 @@
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/action_name"
+        android:id="@+id/action_filter"
         android:icon="@drawable/filter_img"
         android:title="Filter"
 

@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/myImageView"
-            android:background="@color/colorPrimaryOpacity75">
+            android:background="@color/colorPrimaryDarkOpacity75">
 
             <ImageButton
                 android:id="@+id/starButton"
@@ -66,6 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/reviewsLayout"
+            android:padding="@dimen/padding_page"
+            android:textColor="@color/colorTextIcons"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " />
 
         <TextView
@@ -76,7 +78,8 @@
             android:gravity="center_horizontal"
             android:text="REVIEWS"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/colorTextIcons"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/reviewsRecyclerView"

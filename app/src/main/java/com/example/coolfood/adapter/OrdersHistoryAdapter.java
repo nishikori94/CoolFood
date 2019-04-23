@@ -32,7 +32,7 @@ public class OrdersHistoryAdapter extends RecyclerView.Adapter<OrdersHistoryAdap
 
         private TextView storeNamePO;
         private TextView orderDatePO;
-        private ImageButton reviewOrderButton;
+        private TextView reviewOrderButton;
         OnOrderToReviewListener onOrderToReviewListener;
 
         public ViewHolder(@NonNull View itemView, OnOrderToReviewListener onOrderToReviewListener) {

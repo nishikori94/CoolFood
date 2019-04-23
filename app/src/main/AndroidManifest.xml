@@ -13,17 +13,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ReviewActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+             />
         <activity
             android:name=".CheckoutActivity"
             android:parentActivityName=".OfferDetailsActivity" />
         <activity
             android:name=".OfferDetailsActivity"
             android:parentActivityName=".OffersActivity" />
-        <activity android:name=".StoreDetailsActivity" />
-        <activity
-            android:name=".HomeActivity"
+        <activity android:name=".StoreDetailsActivity"
             />
+        <activity android:name=".HomeActivity"
+           />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -32,13 +32,13 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".OffersActivity"
-            android:parentActivityName=".HomeActivity" />
+            android:parentActivityName=".HomeActivity"
+            />
     </application>
 
 </manifest>

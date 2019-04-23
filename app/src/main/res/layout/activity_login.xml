@@ -1,47 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp" >
+    android:paddingRight="16dp">
 
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+        android:layout_margin="16dp"
+        android:hint="@string/enter_email"
+        android:inputType="textEmailAddress" />
 
-        <EditText
-            android:inputType="textEmailAddress"
-            android:layout_margin="16dp"
-            android:id="@+id/email"
-            android:hint="@string/enter_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword" />
 
-        <EditText
-            android:inputType="textPassword"
-            android:layout_margin="16dp"
-            android:id="@+id/password"
-            android:hint="@string/enter_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/buttonstyle"
+        android:text="@string/login"
+        android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login"/>
+    <TextView
+        android:id="@+id/signUpTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signUp"
+        android:textAlignment="center"
+        android:textColor="@color/colorTextIcons" />
 
-        <TextView
-            android:id="@+id/signUpTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/signUp"
-            android:textAlignment="center"/>
-
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

@@ -53,7 +53,7 @@ public class RestaurantListFragment extends Fragment implements RestaurantAdapte
         restaurantList.add(new Restaurant("Restoran 2", "Opis 2 v Opis 2 Opis 2 Opis 2Opis 2Opis 2", R.drawable.restaurant));
         restaurantList.add(new Restaurant("Restoran 3", "Opis 3 Opis 3 Opis 3 Opis 3 Opis 3 Opis 3", R.drawable.restaurant));
 
-        adapter = new RestaurantAdapter(restaurantList, getContext(),this);
+        adapter = new RestaurantAdapter(restaurantList, getContext(), this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -71,11 +71,22 @@ public class RestaurantListFragment extends Fragment implements RestaurantAdapte
         setHasOptionsMenu(true);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_filter:
+                FilterBottomSheetDialog filterBottomSheetDialog = new FilterBottomSheetDialog();
+                filterBottomSheetDialog.show(getFragmentManager(), "filterBottomSheet");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     public void onRestaurantClick(int position) {
         restaurantList.get(position);
-        Intent intent = new Intent(getContext(),OffersActivity.class);      //Ovde ide putExtra ko na UPP
+        Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
         startActivity(intent);
     }
 }

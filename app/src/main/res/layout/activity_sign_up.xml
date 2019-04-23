@@ -33,14 +33,18 @@
             android:id="@+id/registerBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register"/>
+            android:text="@string/register"
+            android:background="@drawable/buttonstyle"
+            android:textColor="@color/white"
+            />
 
         <TextView
             android:id="@+id/signInTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/signIn"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorTextIcons"/>
 
 
 
