@@ -32,10 +32,11 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
     private Button buyBTN;
     private ImageView offerImage;
-    private TextView oldPrice, newPrice, offerDescriptionTV, pickupTime;
+    private TextView oldPrice, newPrice, offerDescriptionTV, pickupTime, quantityTV;
 
     DatabaseReference databaseReference;
     private String offerId = "";
+    private String restaurantAddress = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,25 +50,34 @@ public class OfferDetailsActivity extends AppCompatActivity {
         oldPrice = (TextView) findViewById(R.id.oldPrice);
         oldPrice.setPaintFlags(oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        buyBTN = findViewById(R.id.buyBTN);
-        buyBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CheckoutActivity.class);
-                startActivity(intent);
-            }
-        });
-
         newPrice = (TextView) findViewById(R.id.newPrice);
         offerDescriptionTV = (TextView) findViewById(R.id.offerDescriptionTV);
         pickupTime = (TextView) findViewById(R.id.pickupTime);
+        quantityTV = (TextView) findViewById(R.id.quantityTV);
 
-        if (getIntent() != null)
-            offerId = getIntent().getStringExtra("offerId");
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (intent != null) {
+            offerId = extras.getString("offerId");
+            restaurantAddress = extras.getString("restaurantAddress");
+        }
         if (!offerId.isEmpty() && offerId != null) {
 
+            buyBTN = findViewById(R.id.buyBTN);
+            buyBTN.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), CheckoutActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("restaurantAddress", restaurantAddress);
+                    extras.putString("offerId", offerId);
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }
+            });
+
             databaseReference = FirebaseDatabase.getInstance().getReference("Offer");
-            //Query query = databaseReference.orderByChild("offerId").equalTo(offerId);
             databaseReference.child(offerId).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -77,6 +87,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
                     newPrice.setText(offer.getPrice() + " din.");
                     offerDescriptionTV.setText(offer.getDescription());
                     pickupTime.setText(offer.getDate() + "  /  " + offer.getPickupFrom() + " - " + offer.getPickupUntil());
+                    quantityTV.setText(offer.getQuantity() + " left");
                 }
 
                 @Override

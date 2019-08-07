@@ -34,6 +34,7 @@ public class OffersActivity extends AppCompatActivity{
     FirebaseRecyclerOptions<Offer> options;
     FirebaseRecyclerAdapter<Offer, OfferViewHolder> adapter;
     private String storeId = "";
+    private String restaurantAddress = "";
 
     private TextView restaurantName;
 
@@ -41,12 +42,14 @@ public class OffersActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
-
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();;
         restaurantName = (TextView)findViewById(R.id.restaurantNameTV);
 
-        if (getIntent() != null)
-            storeId = getIntent().getStringExtra("storeId");
-            restaurantName.setText(getIntent().getStringExtra("restaurantName"));
+        if (intent != null){
+            storeId = extras.getString("storeId");
+            restaurantAddress = extras.getString("restaurantAddress");
+            restaurantName.setText(getIntent().getStringExtra("restaurantName"));}
         if (!storeId.isEmpty() && storeId != null) {
 
             databaseReference = FirebaseDatabase.getInstance().getReference("Offer");
@@ -64,7 +67,10 @@ public class OffersActivity extends AppCompatActivity{
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(v.getContext(), OfferDetailsActivity.class);
-                            intent.putExtra("offerId", adapter.getRef(position).getKey());
+                            Bundle extras = new Bundle();
+                            extras.putString("offerId", adapter.getRef(position).getKey());
+                            extras.putString("restaurantAddress", restaurantAddress);
+                            intent.putExtras(extras);
                             startActivity(intent);
                         }
                     });

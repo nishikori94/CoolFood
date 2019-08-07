@@ -83,8 +83,11 @@ public class RestaurantListFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
-                        intent.putExtra("storeId", adapter.getRef(position).getKey());
-                        intent.putExtra("restaurantName", model.getName());
+                        Bundle extras = new Bundle();
+                        extras.putString("storeId", adapter.getRef(position).getKey());
+                        extras.putString("restaurantName", model.getName());
+                        extras.putString("restaurantAddress", model.getAddress());
+                        intent.putExtras(extras);
                         startActivity(intent);
                     }
                 });

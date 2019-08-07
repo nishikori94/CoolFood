@@ -48,7 +48,7 @@
                 android:tint="@color/yellow" />
 
             <TextView
-                android:id="@+id/reviewsTV"
+                android:id="@+id/quantityTV"
                 style="style/TextAppearance.Material.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
