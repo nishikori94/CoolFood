@@ -42,7 +42,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
         final Restaurant restaurant = restaurantList.get(i);
         viewHolder.nameTV.setText(restaurant.getName());
         viewHolder.descriptionTV.setText(restaurant.getDescription());
-        viewHolder.imageView.setImageResource(restaurant.getImgUrl());
+        //viewHolder.imageView.setImageResource(restaurant.getImgUrl());
 
         viewHolder.infoImageButton.setOnClickListener(new View.OnClickListener() {
         @Override

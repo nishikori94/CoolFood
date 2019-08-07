@@ -42,8 +42,8 @@ public class FavouritesFragment extends Fragment implements FavouritesAdapter.On
         recyclerView = view.findViewById(R.id.homeRecyclerView);
         restaurantList = new ArrayList<>();
 
-        restaurantList.add(new Restaurant("Restoran 1", "Opis 1 Opis 1Opis 1Opis 1Opis 1Opis 1", R.drawable.restaurant));
-        restaurantList.add(new Restaurant("Restoran 2", "Opis safas asff asfasfasfsa fasf asfsaf sa", R.drawable.restaurant));
+        //restaurantList.add(new Restaurant("Restoran 1", "Opis 1 Opis 1Opis 1Opis 1Opis 1Opis 1", R.drawable.restaurant));
+        //restaurantList.add(new Restaurant("Restoran 2", "Opis safas asff asfasfasfsa fasf asfsaf sa", R.drawable.restaurant));
 
         adapter = new FavouritesAdapter(restaurantList, getContext(),this);
 

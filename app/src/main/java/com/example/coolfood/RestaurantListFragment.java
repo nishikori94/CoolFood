@@ -3,6 +3,7 @@ package com.example.coolfood;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -19,9 +20,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Toast;
 
 import com.example.coolfood.adapter.RestaurantAdapter;
+import com.example.coolfood.adapter.RestaurantViewHolder;
 import com.example.coolfood.model.Restaurant;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +39,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestaurantListFragment extends Fragment implements RestaurantAdapter.OnRestaurantListener {
+public class RestaurantListFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
     private List<Restaurant> restaurantList;
+    DatabaseReference databaseReference;
+    FirebaseRecyclerOptions<Restaurant> options;
+    FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder> adapter;
+
 
     public RestaurantListFragment() {
         // Required empty public constructor
@@ -47,23 +59,75 @@ public class RestaurantListFragment extends Fragment implements RestaurantAdapte
 
         View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
         recyclerView = view.findViewById(R.id.homeRecyclerView);
-        restaurantList = new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
 
-        restaurantList.add(new Restaurant("Restoran 1", "Opis 1 Opis 1Opis 1Opis 1Opis 1Opis 1", R.drawable.restaurant));
-        restaurantList.add(new Restaurant("Restoran 2", "Opis 2 v Opis 2 Opis 2 Opis 2Opis 2Opis 2", R.drawable.restaurant));
-        restaurantList.add(new Restaurant("Restoran 3", "Opis 3 Opis 3 Opis 3 Opis 3 Opis 3 Opis 3", R.drawable.restaurant));
+        options = new FirebaseRecyclerOptions.Builder<Restaurant>().setQuery(databaseReference, Restaurant.class).build();
 
-        adapter = new RestaurantAdapter(restaurantList, getContext(), this);
+        adapter = new FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull RestaurantViewHolder holder, final int position, @NonNull Restaurant model) {
+                holder.nameTV.setText(model.getName());
+                holder.descriptionTV.setText(model.getDescription());
+                Picasso.get().load(model.getImgUrl()).into(holder.imageView, new Callback() {
+                    @Override
+                    public void onSuccess() {
 
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
+                        intent.putExtra("storeId", adapter.getRef(position).getKey());
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public RestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.store_in_list_layout, viewGroup, false);
+                return new RestaurantViewHolder(view);
+            }
+        };
+
+        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         // Inflate the layout for this fragment
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
 
         setHasOptionsMenu(true);
         return view;
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(adapter!=null)
+            adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(adapter!=null)
+            adapter.stopListening();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(adapter!=null)
+            adapter.startListening();
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -83,10 +147,10 @@ public class RestaurantListFragment extends Fragment implements RestaurantAdapte
         }
     }
 
-    @Override
-    public void onRestaurantClick(int position) {
-        restaurantList.get(position);
-        Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
-        startActivity(intent);
-    }
+//    @Override
+//    public void onRestaurantClick(int position) {
+//        restaurantList.get(position);
+//        Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
+//        startActivity(intent);
+//    }
 }

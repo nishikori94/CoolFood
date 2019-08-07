@@ -1,25 +1,30 @@
 package com.example.coolfood.model;
 
 public class Offer {
-    private int quantity;
+    private String quantity;
     private String name;
     private String pickupFrom;
-    private String until;
-    private double price;
+    private String pickupUntil;
+    private String price;
+    private String restaurantId;
 
-    public Offer(int quantity, String name, String pickupFrom, String until, double price) {
+    public Offer() {
+    }
+
+    public Offer(String quantity, String name, String pickupFrom, String pickupUntil, String price, String restaurantId) {
         this.quantity = quantity;
         this.name = name;
         this.pickupFrom = pickupFrom;
-        this.until = until;
-        this.price=price;
+        this.pickupUntil = pickupUntil;
+        this.price = price;
+        this.restaurantId = restaurantId;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
@@ -39,19 +44,27 @@ public class Offer {
         this.pickupFrom = pickupFrom;
     }
 
-    public String getUntil() {
-        return until;
+    public String getPickupUntil() {
+        return pickupUntil;
     }
 
-    public void setUntil(String until) {
-        this.until = until;
+    public void setPickupUntil(String pickupUntil) {
+        this.pickupUntil = pickupUntil;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }

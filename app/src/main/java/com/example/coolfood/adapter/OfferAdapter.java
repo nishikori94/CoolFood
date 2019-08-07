@@ -37,9 +37,9 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Offer offer = offers.get(i);
 
-        viewHolder.textPickup.setText(offer.getPickupFrom()+" - " + offer.getUntil());
-        viewHolder.textPrice.setText(Double.toString(offer.getPrice()) + " dinara");
-        viewHolder.textQuantity.setText("Preostalo " + Integer.toString(offer.getQuantity()));
+        viewHolder.textPickup.setText(offer.getPickupFrom()+" - " + offer.getPickupUntil());
+        viewHolder.textPrice.setText(offer.getPrice() + " dinara");
+        viewHolder.textQuantity.setText("Preostalo " + offer.getQuantity());
         viewHolder.textName.setText(offer.getName());
 
     }
@@ -49,7 +49,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> 
         return offers.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView textPrice;
         public TextView textQuantity;
