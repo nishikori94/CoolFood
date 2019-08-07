@@ -65,7 +65,7 @@ public class RestaurantListFragment extends Fragment {
 
         adapter = new FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull RestaurantViewHolder holder, final int position, @NonNull Restaurant model) {
+            protected void onBindViewHolder(@NonNull RestaurantViewHolder holder, final int position, @NonNull final Restaurant model) {
                 holder.nameTV.setText(model.getName());
                 holder.descriptionTV.setText(model.getDescription());
                 Picasso.get().load(model.getImgUrl()).into(holder.imageView, new Callback() {
@@ -84,6 +84,7 @@ public class RestaurantListFragment extends Fragment {
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
                         intent.putExtra("storeId", adapter.getRef(position).getKey());
+                        intent.putExtra("restaurantName", model.getName());
                         startActivity(intent);
                     }
                 });

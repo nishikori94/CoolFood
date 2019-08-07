@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.coolfood.adapter.OfferAdapter;
 import com.example.coolfood.adapter.OfferViewHolder;
@@ -20,27 +21,32 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class OffersActivity extends AppCompatActivity implements OfferAdapter.OnOfferListener {
+public class OffersActivity extends AppCompatActivity{
 
     private RecyclerView recyclerView;
-    //private RecyclerView.Adapter adapter;
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Offer> options;
     FirebaseRecyclerAdapter<Offer, OfferViewHolder> adapter;
-    private List<Offer> offers;
     private String storeId = "";
+
+    private TextView restaurantName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
 
+        restaurantName = (TextView)findViewById(R.id.restaurantNameTV);
+
         if (getIntent() != null)
             storeId = getIntent().getStringExtra("storeId");
+            restaurantName.setText(getIntent().getStringExtra("restaurantName"));
         if (!storeId.isEmpty() && storeId != null) {
 
             databaseReference = FirebaseDatabase.getInstance().getReference("Offer");
@@ -48,11 +54,20 @@ public class OffersActivity extends AppCompatActivity implements OfferAdapter.On
             options = new FirebaseRecyclerOptions.Builder<Offer>().setQuery(query, Offer.class).build();
             adapter = new FirebaseRecyclerAdapter<Offer, OfferViewHolder>(options) {
                 @Override
-                protected void onBindViewHolder(@NonNull OfferViewHolder holder, int position, @NonNull Offer model) {
+                protected void onBindViewHolder(@NonNull OfferViewHolder holder, final int position, @NonNull Offer model) {
                     holder.textName.setText(model.getName());
                     holder.textPickup.setText(model.getPickupFrom() + " - " + model.getPickupUntil());
-                    holder.textPrice.setText(model.getPrice());
-                    holder.textQuantity.setText(model.getQuantity());
+                    holder.textPrice.setText(model.getPrice() + " din.");
+                    holder.textQuantity.setText(model.getQuantity() + " left");
+
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(v.getContext(), OfferDetailsActivity.class);
+                            intent.putExtra("offerId", adapter.getRef(position).getKey());
+                            startActivity(intent);
+                        }
+                    });
                 }
 
                 @NonNull
@@ -72,22 +87,16 @@ public class OffersActivity extends AppCompatActivity implements OfferAdapter.On
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-//        offers = new ArrayList<>();
-//        for (int i=0; i<5; i++){
-//            Offer offer = new Offer(i, "Offer "+(i+1), Integer.toString(20+i)+":30",Integer.toString(21+i), (i+1)*100);
-//            offers.add(offer);
-//        }
-
         adapter.startListening();
         recyclerView.setAdapter(adapter);
 
 
     }
 
-    @Override
-    public void onOfferClick(int position) {
-        offers.get(position);
-        Intent intent = new Intent(this, OfferDetailsActivity.class);       //Ovde ide putExtra
-        startActivity(intent);
-    }
+//    @Override
+//    public void onOfferClick(int position) {
+//        offers.get(position);
+//        Intent intent = new Intent(this, OfferDetailsActivity.class);       //Ovde ide putExtra
+//        startActivity(intent);
+//    }
 }

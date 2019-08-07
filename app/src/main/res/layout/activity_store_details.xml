@@ -62,7 +62,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/storeDescriptionTV"
+            android:id="@+id/offerDescriptionTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/reviewsLayout"
@@ -74,7 +74,7 @@
             android:id="@+id/reviewsTitleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/storeDescriptionTV"
+            android:layout_below="@id/offerDescriptionTV"
             android:gravity="center_horizontal"
             android:text="REVIEWS"
             android:textSize="20sp"

@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/myImageView"
-        android:layout_width="wrap_content"
+        android:id="@+id/offerImageView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@drawable/restaurant" />
@@ -15,9 +15,9 @@
         android:id="@+id/myImageViewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/myImageView"
-        android:layout_alignTop="@id/myImageView"
-        android:layout_alignEnd="@id/myImageView"
+        android:layout_alignStart="@id/offerImageView"
+        android:layout_alignTop="@id/offerImageView"
+        android:layout_alignEnd="@id/offerImageView"
         android:layout_alignBottom="@id/bannerLayout"
         android:layout_margin="1dp"
         android:gravity="center"
@@ -31,7 +31,7 @@
         android:id="@+id/bannerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/myImageView"
+        android:layout_alignBottom="@+id/offerImageView"
         android:background="@color/colorPrimaryDarkOpacity75"
         android:paddingStart="@dimen/padding_page"
         android:paddingEnd="@dimen/padding_page"
@@ -57,6 +57,7 @@
             />
 
         <TextView
+            android:id="@+id/newPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/oldPrice"
@@ -67,7 +68,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/storeDescriptionTV"
+        android:id="@+id/offerDescriptionTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bannerLayout"
@@ -78,7 +79,7 @@
 
         <TextView
             android:id="@+id/pickupTime"
-            android:layout_below="@+id/storeDescriptionTV"
+            android:layout_below="@+id/offerDescriptionTV"
             android:gravity="center_vertical"
             android:drawableStart="@drawable/baseline_timer_black_24dp"
             android:textColor="@color/colorTextIcons"
