@@ -7,26 +7,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.coolfood.adapter.OfferViewHolder;
 import com.example.coolfood.model.Offer;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 public class OfferDetailsActivity extends AppCompatActivity {
 
@@ -51,9 +42,9 @@ public class OfferDetailsActivity extends AppCompatActivity {
         oldPrice.setPaintFlags(oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
         newPrice = (TextView) findViewById(R.id.newPrice);
-        offerDescriptionTV = (TextView) findViewById(R.id.offerDescriptionTV);
+        offerDescriptionTV = (TextView) findViewById(R.id.storeDescriptionTV);
         pickupTime = (TextView) findViewById(R.id.pickupTime);
-        quantityTV = (TextView) findViewById(R.id.quantityTV);
+        quantityTV = (TextView) findViewById(R.id.reviewNumTV);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();

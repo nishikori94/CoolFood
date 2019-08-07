@@ -9,21 +9,24 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/myImageView"
-            android:layout_width="wrap_content"
+            android:id="@+id/storeImageView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:src="@drawable/restaurant" />
 
         <TextView
-            android:id="@+id/myImageViewText"
+            android:id="@+id/storeNameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/myImageView"
-            android:layout_alignTop="@id/myImageView"
-            android:layout_alignEnd="@id/myImageView"
+            android:layout_alignStart="@id/storeImageView"
+            android:layout_alignTop="@id/storeImageView"
+            android:layout_alignEnd="@id/storeImageView"
             android:layout_alignBottom="@id/reviewsLayout"
-            android:layout_margin="1dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginBottom="-1dp"
             android:gravity="center"
             android:text="Kod Cerashvilija"
             android:textColor="@color/white"
@@ -35,7 +38,7 @@
             android:id="@+id/reviewsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/myImageView"
+            android:layout_alignBottom="@+id/storeImageView"
             android:background="@color/colorPrimaryDarkOpacity75">
 
             <ImageButton
@@ -48,7 +51,7 @@
                 android:tint="@color/yellow" />
 
             <TextView
-                android:id="@+id/quantityTV"
+                android:id="@+id/reviewNumTV"
                 style="style/TextAppearance.Material.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +65,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/offerDescriptionTV"
+            android:id="@+id/storeDescriptionTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/reviewsLayout"
@@ -74,7 +77,7 @@
             android:id="@+id/reviewsTitleTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/offerDescriptionTV"
+            android:layout_below="@id/storeDescriptionTV"
             android:gravity="center_horizontal"
             android:text="REVIEWS"
             android:textSize="20sp"

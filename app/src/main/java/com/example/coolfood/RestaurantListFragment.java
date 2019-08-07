@@ -79,6 +79,7 @@ public class RestaurantListFragment extends Fragment {
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -88,6 +89,15 @@ public class RestaurantListFragment extends Fragment {
                         extras.putString("restaurantName", model.getName());
                         extras.putString("restaurantAddress", model.getAddress());
                         intent.putExtras(extras);
+                        startActivity(intent);
+                    }
+                });
+
+                holder.infoImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), StoreDetailsActivity.class);
+                        intent.putExtra("storeId", adapter.getRef(position).getKey());
                         startActivity(intent);
                     }
                 });
