@@ -2,9 +2,7 @@ package com.example.coolfood.model;
 
 public class Order {
 
-    //ovde ce biti private Store store
     private String storeName;
-    //verovatno treba neki DateTime
     private String pickupFrom;
     private String getPickupUntil;
 

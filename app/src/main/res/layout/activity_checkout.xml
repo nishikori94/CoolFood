@@ -92,6 +92,7 @@
                             android:textColor="@color/colorTextIcons" />
 
                         <ImageButton
+                            android:id="@+id/decQuantityIB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="50dp"
@@ -101,6 +102,7 @@
                             android:tint="@color/colorPrimaryDark" />
 
                         <TextView
+                            android:id="@+id/quantityCounterTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -111,6 +113,7 @@
                             android:textSize="20sp" />
 
                         <ImageButton
+                            android:id="@+id/incQuantityIB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@null"

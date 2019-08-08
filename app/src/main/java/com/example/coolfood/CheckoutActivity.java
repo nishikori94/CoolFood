@@ -1,10 +1,13 @@
 package com.example.coolfood;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,9 +27,15 @@ public class CheckoutActivity extends AppCompatActivity {
     private TextView restaurantAddressTV;
     private TextView pickupTimeTV;
     private ImageView offerIV;
+    private TextView quantityCounterTV;
+    private ImageButton decQuantityIB;
+    private ImageButton incQuantityIB;
+
     private String offerId = "";
     private String restaurantAddress = "";
     DatabaseReference databaseReference;
+    int maxQuantity = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +46,11 @@ public class CheckoutActivity extends AppCompatActivity {
         restaurantAddressTV = (TextView)findViewById(R.id.restaurantAddressTV);
         pickupTimeTV = (TextView) findViewById(R.id.pickupTimeTV);
         offerIV = (ImageView) findViewById(R.id.offerIV);
+        quantityCounterTV = findViewById(R.id.quantityCounterTV);
+        decQuantityIB = findViewById(R.id.decQuantityIB);
+        incQuantityIB = findViewById(R.id.incQuantityIB);
+
+        quantityCounterTV.setText("0");
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -58,6 +72,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     offerNameTV.setText(offer.getName());
                     pickupTimeTV.setText(offer.getDate() + "  /  " + offer.getPickupFrom() + " - " + offer.getPickupUntil());
                     restaurantAddressTV.setText(restaurantAddress);
+                    maxQuantity = Integer.parseInt(offer.getQuantity());
                 }
 
                 @Override
@@ -66,5 +81,25 @@ public class CheckoutActivity extends AppCompatActivity {
                 }
             });
         }
+
+        incQuantityIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int quantity = Integer.parseInt(quantityCounterTV.getText().toString());
+                if(quantity < maxQuantity)
+                    quantity += 1;
+                quantityCounterTV.setText(Integer.toString(quantity));
+            }
+        });
+
+        decQuantityIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int quantity = Integer.parseInt(quantityCounterTV.getText().toString());
+                if(quantity > 1)
+                    quantity -= 1;
+                quantityCounterTV.setText(Integer.toString(quantity));
+            }
+        });
     }
 }
