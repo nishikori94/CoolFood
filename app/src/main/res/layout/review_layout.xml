@@ -17,7 +17,7 @@
             >
 
             <TextView
-                android:id="@+id/userName"
+                android:id="@+id/userTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="UserName"
@@ -26,60 +26,13 @@
                 android:background="@color/colorPrimaryLight"
                 android:padding="4dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <RatingBar
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/padding_page"
-                android:paddingEnd="@dimen/padding_page"
-                >
-
-                <ImageButton
-                    android:id="@+id/starButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:elevation="@dimen/cardview_default_elevation"
-                    android:src="@drawable/baseline_star_black_18dp"
-                    android:tint="@color/yellow" />
-
-                <ImageButton
-                    android:id="@+id/starButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:elevation="@dimen/cardview_default_elevation"
-                    android:src="@drawable/baseline_star_black_18dp"
-                    android:tint="@color/yellow" />
-
-                <ImageButton
-                    android:id="@+id/starButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:elevation="@dimen/cardview_default_elevation"
-                    android:src="@drawable/baseline_star_black_18dp"
-                    android:tint="@color/yellow" />
-
-                <ImageButton
-                    android:id="@+id/starButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:elevation="@dimen/cardview_default_elevation"
-                    android:src="@drawable/baseline_star_black_18dp"
-                    android:tint="@color/yellow" />
-
-                <ImageButton
-                    android:id="@+id/starButton5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:elevation="@dimen/cardview_default_elevation"
-                    android:src="@drawable/baseline_star_black_18dp"
-                    android:tint="@color/yellow" />
-
-            </LinearLayout>
+                android:id="@+id/ratingBar"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:progressTint="@color/yellow"/>
 
             <TextView
                 android:id="@+id/reviewTV"

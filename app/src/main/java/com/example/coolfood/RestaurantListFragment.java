@@ -42,7 +42,6 @@ import java.util.List;
 public class RestaurantListFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private List<Restaurant> restaurantList;
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Restaurant> options;
     FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder> adapter;

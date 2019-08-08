@@ -30,7 +30,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            user = (TextView)itemView.findViewById(R.id.userName);
+            user = (TextView)itemView.findViewById(R.id.userTV);
             reviewText = (TextView)itemView.findViewById(R.id.reviewTV);
 
         }
