@@ -70,6 +70,7 @@ public class OffersActivity extends AppCompatActivity{
                             Bundle extras = new Bundle();
                             extras.putString("offerId", adapter.getRef(position).getKey());
                             extras.putString("restaurantAddress", restaurantAddress);
+                            extras.putString("restaurantName", getIntent().getStringExtra("restaurantName"));
                             intent.putExtras(extras);
                             startActivity(intent);
                         }

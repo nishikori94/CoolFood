@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.coolfood.R;
@@ -39,7 +38,7 @@ public class OrdersHistoryAdapter extends RecyclerView.Adapter<OrdersHistoryAdap
             super(itemView);
 
             storeNamePO = itemView.findViewById(R.id.storeNamePO);
-            orderDatePO = itemView.findViewById(R.id.orderDatePO);
+            orderDatePO = itemView.findViewById(R.id.pickupTimePO);
             reviewOrderButton = itemView.findViewById(R.id.reviewOrderButton);
             this.onOrderToReviewListener = onOrderToReviewListener;
 

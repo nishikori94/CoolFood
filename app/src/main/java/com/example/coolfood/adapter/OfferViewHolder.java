@@ -32,6 +32,6 @@ public class OfferViewHolder extends RecyclerView.ViewHolder {
         textOldPrice = itemView.findViewById(R.id.oldPrice);
         myImageTextView = itemView.findViewById(R.id.storeNameTV);
         newPrice = itemView.findViewById(R.id.newPrice);
-        pickupTime = itemView.findViewById(R.id.pickupTime);
+        pickupTime = itemView.findViewById(R.id.pickupTimeAO);
     }
 }

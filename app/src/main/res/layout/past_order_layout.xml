@@ -24,7 +24,7 @@
                 android:text="BLA BLA BLA BLA BLA" />
 
             <TextView
-                android:id="@+id/orderDatePO"
+                android:id="@+id/pickupTimePO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorSecondaryText"
@@ -40,7 +40,7 @@
                 android:text="Make review!"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_alignTop="@+id/storeNamePO"
-                android:layout_alignBottom="@+id/orderDatePO"
+                android:layout_alignBottom="@+id/pickupTimePO"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
                 />

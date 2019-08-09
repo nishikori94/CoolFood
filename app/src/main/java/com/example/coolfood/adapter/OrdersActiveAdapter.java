@@ -31,8 +31,8 @@ public class OrdersActiveAdapter extends RecyclerView.Adapter<OrdersActiveAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            storeName = itemView.findViewById(R.id.storeName);
-            pickupTime = itemView.findViewById(R.id.pickupTime);
+            storeName = itemView.findViewById(R.id.storeNameAO);
+            pickupTime = itemView.findViewById(R.id.pickupTimeAO);
         }
     }
 

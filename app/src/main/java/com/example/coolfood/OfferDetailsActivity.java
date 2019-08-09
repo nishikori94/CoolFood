@@ -43,7 +43,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
         newPrice = (TextView) findViewById(R.id.newPrice);
         offerDescriptionTV = (TextView) findViewById(R.id.storeDescriptionTV);
-        pickupTime = (TextView) findViewById(R.id.pickupTime);
+        pickupTime = (TextView) findViewById(R.id.pickupTimeAO);
         quantityTV = (TextView) findViewById(R.id.reviewNumTV);
 
         Intent intent = getIntent();
@@ -63,6 +63,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
                     Bundle extras = new Bundle();
                     extras.putString("restaurantAddress", restaurantAddress);
                     extras.putString("offerId", offerId);
+                    extras.putString("restaurantName", getIntent().getStringExtra("restaurantName"));
                     intent.putExtras(extras);
                     startActivity(intent);
                 }

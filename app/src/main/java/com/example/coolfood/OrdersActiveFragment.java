@@ -2,6 +2,7 @@ package com.example.coolfood;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.coolfood.adapter.OrdersActiveAdapter;
+import com.example.coolfood.adapter.OrderActiveViewHolder;
+import com.example.coolfood.adapter.OrderHistoryViewHolder;
 import com.example.coolfood.model.Order;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 /**
@@ -22,8 +28,11 @@ import java.util.List;
 public class OrdersActiveFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private List<Order> orderList;
+
+    DatabaseReference databaseReference;
+    FirebaseRecyclerOptions<Order> options;
+    FirebaseRecyclerAdapter<Order, OrderActiveViewHolder> adapter;
+    private FirebaseAuth firebaseAuth;
 
     public OrdersActiveFragment() {
         // Required empty public constructor
@@ -34,18 +43,34 @@ public class OrdersActiveFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_orders_active, container, false);
+        final View v = inflater.inflate(R.layout.fragment_orders_active, container, false);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("OrderActive");
+        Query query = databaseReference.orderByChild("user").equalTo(user.getEmail());
+        options = new FirebaseRecyclerOptions.Builder<Order>().setQuery(query, Order.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<Order, OrderActiveViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull OrderActiveViewHolder holder, int position, @NonNull Order model) {
+                holder.storeNameAO.setText(model.getStoreName());
+                holder.pickupTimeAO.setText(model.getPickupFrom() + " - " + model.getGetPickupUntil());
+            }
+
+            @NonNull
+            @Override
+            public OrderActiveViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.active_order_layout, viewGroup, false);
+                return new OrderActiveViewHolder(view);
+            }
+        };
+
         recyclerView = v.findViewById(R.id.activeOrdersRecyclerView);
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        orderList = new ArrayList<>();
-        orderList.add(new Order("Restoran 1 - Novi Sad", "17:00", "17:15"));
-        orderList.add(new Order("Restoran 2 - Beograd", "11:00", "11:55"));
-        orderList.add(new Order("Restoran 3 - Nis", "13:00", "13:15"));
-        orderList.add(new Order("Restoran 4 - Novi Sad", "16:00", "17:15"));
-
-        adapter = new OrdersActiveAdapter(orderList, getContext());
+        adapter.startListening();
         recyclerView.setAdapter(adapter);
 
         return v;

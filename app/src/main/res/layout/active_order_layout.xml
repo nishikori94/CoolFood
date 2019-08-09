@@ -18,19 +18,19 @@
 
             <TextView
                 android:textColor="@color/colorTextIcons"
-                android:id="@+id/storeName"
+                android:id="@+id/storeNameAO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/store_name" />
 
             <TextView
                 android:textColor="@color/colorTextIcons"
-                android:id="@+id/pickupTime"
+                android:id="@+id/pickupTimeAO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_below="@id/storeName"
-                android:layout_alignStart="@+id/storeName"
+                android:layout_below="@id/storeNameAO"
+                android:layout_alignStart="@+id/storeNameAO"
                 android:text="@string/pickup_time" />
 
             <ImageButton
@@ -38,8 +38,8 @@
                 android:id="@+id/qrCodeIcon"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_alignTop="@+id/storeName"
-                android:layout_alignBottom="@+id/pickupTime"
+                android:layout_alignTop="@+id/storeNameAO"
+                android:layout_alignBottom="@+id/pickupTimeAO"
                 android:src="@drawable/qrcode"
                 android:layout_alignParentEnd="true"
                 android:scaleType="centerInside"

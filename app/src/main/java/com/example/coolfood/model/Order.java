@@ -3,30 +3,38 @@ package com.example.coolfood.model;
 public class Order {
 
     private String storeName;
+    private String user;
     private String pickupFrom;
     private String getPickupUntil;
-
+    private String price;
+    private String offer;
     private String date;
     private boolean reviewed;
+    private String quantity;
+    private boolean active;
 
-    public Order(String storeName, String pickupFrom, String getPickupUntil) {
-        this.storeName = storeName;
-        this.pickupFrom = pickupFrom;
-        this.getPickupUntil = getPickupUntil;
+    public Order() {
     }
 
-    public Order(String storeName, String date, boolean reviewed) {
+    public Order(String storeName, String user, String pickupFrom, String getPickupUntil, String price, String offer, String date, boolean reviewed, String quantity, boolean active) {
         this.storeName = storeName;
-        this.date = date;
-        this.reviewed = reviewed;
-    }
-
-    public Order(String storeName, String pickupFrom, String getPickupUntil, String date, boolean reviewed) {
-        this.storeName = storeName;
+        this.user = user;
         this.pickupFrom = pickupFrom;
         this.getPickupUntil = getPickupUntil;
+        this.price = price;
+        this.offer = offer;
         this.date = date;
         this.reviewed = reviewed;
+        this.quantity = quantity;
+        this.active = active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getStoreName() {
@@ -67,5 +75,37 @@ public class Order {
 
     public void setReviewed(boolean reviewed) {
         this.reviewed = reviewed;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(String offer) {
+        this.offer = offer;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

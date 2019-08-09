@@ -78,7 +78,7 @@
 
 
         <TextView
-            android:id="@+id/pickupTime"
+            android:id="@+id/pickupTimeAO"
             android:layout_below="@+id/storeDescriptionTV"
             android:gravity="center_vertical"
             android:drawableStart="@drawable/baseline_timer_black_24dp"
@@ -94,7 +94,7 @@
         android:id="@+id/buyBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pickupTime"
+        android:layout_below="@+id/pickupTimeAO"
         android:text="BUY"
         android:layout_centerHorizontal="true"
         android:textColor="@color/white"
