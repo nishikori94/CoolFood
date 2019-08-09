@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.coolfood.adapter.OfferAdapter;
 import com.example.coolfood.adapter.OfferViewHolder;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class OffersActivity extends AppCompatActivity{
+public class OffersActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -43,13 +44,14 @@ public class OffersActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
         Intent intent = getIntent();
-        Bundle extras = intent.getExtras();;
-        restaurantName = (TextView)findViewById(R.id.restaurantNameTV);
+        Bundle extras = intent.getExtras();
+        restaurantName = (TextView) findViewById(R.id.restaurantNameTV);
 
-        if (intent != null){
+        if (intent != null) {
             storeId = extras.getString("storeId");
             restaurantAddress = extras.getString("restaurantAddress");
-            restaurantName.setText(getIntent().getStringExtra("restaurantName"));}
+            restaurantName.setText(getIntent().getStringExtra("restaurantName"));
+        }
         if (!storeId.isEmpty() && storeId != null) {
 
             databaseReference = FirebaseDatabase.getInstance().getReference("Offer");
@@ -57,24 +59,30 @@ public class OffersActivity extends AppCompatActivity{
             options = new FirebaseRecyclerOptions.Builder<Offer>().setQuery(query, Offer.class).build();
             adapter = new FirebaseRecyclerAdapter<Offer, OfferViewHolder>(options) {
                 @Override
-                protected void onBindViewHolder(@NonNull OfferViewHolder holder, final int position, @NonNull Offer model) {
+                protected void onBindViewHolder(@NonNull OfferViewHolder holder, final int position, @NonNull final Offer model) {
                     holder.textName.setText(model.getName());
                     holder.textPickup.setText(model.getPickupFrom() + " - " + model.getPickupUntil());
                     holder.textPrice.setText(model.getPrice() + " din.");
                     holder.textQuantity.setText(model.getQuantity() + " left");
 
+
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(v.getContext(), OfferDetailsActivity.class);
-                            Bundle extras = new Bundle();
-                            extras.putString("offerId", adapter.getRef(position).getKey());
-                            extras.putString("restaurantAddress", restaurantAddress);
-                            extras.putString("restaurantName", getIntent().getStringExtra("restaurantName"));
-                            intent.putExtras(extras);
-                            startActivity(intent);
+                            if (Integer.parseInt(model.getQuantity()) != 0) {
+                                Intent intent = new Intent(v.getContext(), OfferDetailsActivity.class);
+                                Bundle extras = new Bundle();
+                                extras.putString("offerId", adapter.getRef(position).getKey());
+                                extras.putString("restaurantAddress", restaurantAddress);
+                                extras.putString("restaurantName", getIntent().getStringExtra("restaurantName"));
+                                intent.putExtras(extras);
+                                startActivity(intent);
+                            } else
+                                Toast.makeText(getApplicationContext(), "There is no more, sorry!", Toast.LENGTH_SHORT).show();
                         }
+
                     });
+
                 }
 
                 @NonNull
@@ -84,7 +92,9 @@ public class OffersActivity extends AppCompatActivity{
 
                     return new OfferViewHolder(view);
                 }
-            };
+            }
+
+            ;
         }
 
         recyclerView = findViewById(R.id.offersRV);

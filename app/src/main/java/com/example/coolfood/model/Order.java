@@ -12,11 +12,13 @@ public class Order {
     private boolean reviewed;
     private String quantity;
     private boolean active;
+    private String restaurantId;
+    private String orderId;
 
     public Order() {
     }
 
-    public Order(String storeName, String user, String pickupFrom, String getPickupUntil, String price, String offer, String date, boolean reviewed, String quantity, boolean active) {
+    public Order(String storeName, String user, String pickupFrom, String getPickupUntil, String price, String offer, String date, boolean reviewed, String quantity, boolean active, String restaurantId, String orderId) {
         this.storeName = storeName;
         this.user = user;
         this.pickupFrom = pickupFrom;
@@ -27,6 +29,24 @@ public class Order {
         this.reviewed = reviewed;
         this.quantity = quantity;
         this.active = active;
+        this.restaurantId = restaurantId;
+        this.orderId = orderId;
+    }
+
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public boolean isActive() {
@@ -108,4 +128,6 @@ public class Order {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
+
+
 }

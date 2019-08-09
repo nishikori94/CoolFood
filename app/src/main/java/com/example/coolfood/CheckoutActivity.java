@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 public class CheckoutActivity extends AppCompatActivity {
 
@@ -117,7 +118,9 @@ public class CheckoutActivity extends AppCompatActivity {
                     confirmBtn.setEnabled(true);
                     decQuantityIB.setColorFilter(getColor(R.color.colorPrimaryDark));
                 }
-                if (quantity > 0) {
+                if(quantity == 1)
+                    decQuantityIB.setColorFilter(getColor(R.color.grey));
+                if (quantity > 0 && quantity != 1) {
                     decQuantityIB.setEnabled(true);
                     decQuantityIB.setColorFilter(getColor(R.color.colorPrimaryDark));
                 }
@@ -153,8 +156,11 @@ public class CheckoutActivity extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Order order = new Order(getIntent().getStringExtra("restaurantName"), user.getEmail(), offer.getPickupFrom(), offer.getPickupUntil(), Integer.toString(price * Integer.parseInt(quantityCounterTV.getText().toString())), offer.getName(), Calendar.getInstance().getTime().toString(), false, quantityCounterTV.getText().toString(), true);
-                orderDatabaseRef.child(String.valueOf(System.currentTimeMillis())).setValue(order);
+                String uuid = UUID.randomUUID().toString();
+                Order order = new Order(getIntent().getStringExtra("restaurantName"), user.getEmail(), offer.getPickupFrom(), offer.getPickupUntil(), Integer.toString(price * Integer.parseInt(quantityCounterTV.getText().toString())), offer.getName(), Calendar.getInstance().getTime().toString(), false, quantityCounterTV.getText().toString(), true, offer.getRestaurantId(), uuid);
+                orderDatabaseRef.child(String.valueOf(uuid)).setValue(order);
+                databaseReference.child(offerId).child("quantity").setValue(Integer.toString(maxQuantity - Integer.parseInt(quantityCounterTV.getText().toString())));
+
                 Toast.makeText(getApplicationContext(), "Thank you, order placed!", Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(myIntent);
