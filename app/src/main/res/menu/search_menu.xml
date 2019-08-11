@@ -15,7 +15,6 @@
         android:id="@+id/action_filter"
         android:icon="@drawable/filter_img"
         android:title="Filter"
-
         app:showAsAction="always" />
 
 

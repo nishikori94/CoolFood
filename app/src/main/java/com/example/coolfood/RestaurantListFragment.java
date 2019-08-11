@@ -2,6 +2,7 @@ package com.example.coolfood;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coolfood.adapter.RestaurantAdapter;
@@ -29,6 +31,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -45,6 +48,7 @@ public class RestaurantListFragment extends Fragment {
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<Restaurant> options;
     FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder> adapter;
+    FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder> searchAdapter;
 
 
     public RestaurantListFragment() {
@@ -124,27 +128,114 @@ public class RestaurantListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if(adapter!=null)
+        if (adapter != null)
             adapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if(adapter!=null)
+        if (adapter != null)
             adapter.stopListening();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(adapter!=null)
+        if (adapter != null)
             adapter.startListening();
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.search_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+//                searchAdapter.stopListening();
+  //              adapter.startListening();
+                recyclerView.setAdapter(adapter);
+                return true;
+            }
+        });
+
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
+                Query query = databaseReference.orderByChild("name").equalTo(s);//startAt(s.toUpperCase()).endAt(s.toLowerCase() + "\uf8ff");
+                options = new FirebaseRecyclerOptions.Builder<Restaurant>().setQuery(query, Restaurant.class).build();
+                searchAdapter = new FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull RestaurantViewHolder holder, final int position, @NonNull final Restaurant model) {
+                        holder.nameTV.setText(model.getName());
+                        holder.descriptionTV.setText(model.getDescription());
+                        Picasso.get().load(model.getImgUrl()).into(holder.imageView, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
+                                Bundle extras = new Bundle();
+                                extras.putString("storeId", adapter.getRef(position).getKey());
+                                extras.putString("restaurantName", model.getName());
+                                extras.putString("restaurantAddress", model.getAddress());
+                                intent.putExtras(extras);
+                                startActivity(intent);
+                            }
+                        });
+
+                        holder.infoImageButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getContext(), StoreDetailsActivity.class);
+                                intent.putExtra("storeId", adapter.getRef(position).getKey());
+                                startActivity(intent);
+                            }
+                        });
+                    }
+
+                    @NonNull
+                    @Override
+                    public RestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+                        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.store_in_list_layout, viewGroup, false);
+                        return new RestaurantViewHolder(view);
+                    }
+                };
+
+
+
+                searchAdapter.startListening();
+                recyclerView.setAdapter(searchAdapter);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+
         setHasOptionsMenu(true);
     }
 

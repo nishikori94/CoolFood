@@ -106,6 +106,7 @@ public class OrdersHistoryFragment extends Fragment {
             }
         };
 
+
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter.startListening();
