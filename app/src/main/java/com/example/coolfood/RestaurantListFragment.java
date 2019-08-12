@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -23,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.example.coolfood.adapter.RestaurantAdapter;
 import com.example.coolfood.adapter.RestaurantViewHolder;
@@ -63,6 +65,10 @@ public class RestaurantListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
         recyclerView = view.findViewById(R.id.homeRecyclerView);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
+
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(toolbar);
 
         options = new FirebaseRecyclerOptions.Builder<Restaurant>().setQuery(databaseReference, Restaurant.class).build();
 
