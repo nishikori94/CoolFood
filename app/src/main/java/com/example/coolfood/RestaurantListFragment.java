@@ -4,10 +4,12 @@ package com.example.coolfood;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.MenuCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,25 +23,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
+
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
-import com.example.coolfood.adapter.RestaurantAdapter;
 import com.example.coolfood.adapter.RestaurantViewHolder;
+import com.example.coolfood.database.Database;
+import com.example.coolfood.model.Favourites;
 import com.example.coolfood.model.Restaurant;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,6 +52,10 @@ public class RestaurantListFragment extends Fragment {
     FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder> adapter;
     FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder> searchAdapter;
 
+    private FirebaseAuth firebaseAuth;
+
+    Database localDB;
+
 
     public RestaurantListFragment() {
         // Required empty public constructor
@@ -62,11 +66,13 @@ public class RestaurantListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
         recyclerView = view.findViewById(R.id.homeRecyclerView);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
 
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        localDB = new Database(getContext());
+
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
 
@@ -74,7 +80,7 @@ public class RestaurantListFragment extends Fragment {
 
         adapter = new FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull RestaurantViewHolder holder, final int position, @NonNull final Restaurant model) {
+            protected void onBindViewHolder(@NonNull final RestaurantViewHolder holder, final int position, @NonNull final Restaurant model) {
                 holder.nameTV.setText(model.getName());
                 holder.descriptionTV.setText(model.getDescription());
                 Picasso.get().load(model.getImgUrl()).into(holder.imageView, new Callback() {
@@ -86,6 +92,38 @@ public class RestaurantListFragment extends Fragment {
                     @Override
                     public void onError(Exception e) {
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                int yellow = ResourcesCompat.getColor(getResources(), R.color.yellow, null);
+                if(localDB.isFavourite(adapter.getRef(position).getKey()))
+                    holder.favBtn.setColorFilter(yellow);
+
+                holder.favBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int yellow = ResourcesCompat.getColor(getResources(), R.color.yellow, null);
+                        int grey = ResourcesCompat.getColor(getResources(), R.color.grey, null);
+                        Favourites favourites = new Favourites();
+                        favourites.setAddress(model.getAddress());
+                        favourites.setDescription(model.getDescription());
+                        favourites.setImgUrl(model.getImgUrl());
+                        favourites.setName(model.getName());
+                        favourites.setRestaurantId(adapter.getRef(position).getKey());
+
+                        firebaseAuth = FirebaseAuth.getInstance();
+                        final FirebaseUser user = firebaseAuth.getCurrentUser();
+                        favourites.setUser(user.getEmail());
+
+                        if(!localDB.isFavourite(adapter.getRef(position).getKey())){
+                            localDB.addToFavourites(favourites);
+                            holder.favBtn.setColorFilter(yellow);
+                            Toast.makeText(getContext(), "Added to favourites!", Toast.LENGTH_SHORT);
+                        }else {
+                            localDB.removeFromFavourites(adapter.getRef(position).getKey());
+                            holder.favBtn.setColorFilter(grey);
+                            Toast.makeText(getContext(), "Removed from favourites!", Toast.LENGTH_SHORT);
+                        }
                     }
                 });
 
