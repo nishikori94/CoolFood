@@ -36,6 +36,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
 
         offerImage = findViewById(R.id.offerImageView);
         oldPrice = (TextView) findViewById(R.id.oldPrice);

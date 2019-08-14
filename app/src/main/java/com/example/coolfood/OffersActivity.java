@@ -103,6 +103,7 @@ public class OffersActivity extends AppCompatActivity {
 
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
 
         adapter.startListening();
         recyclerView.setAdapter(adapter);

@@ -74,6 +74,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
 
 
         final Intent intent = getIntent();

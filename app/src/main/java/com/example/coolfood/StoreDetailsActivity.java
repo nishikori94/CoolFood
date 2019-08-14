@@ -51,7 +51,9 @@ public class StoreDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_store_details);
 
         ActionBar actionBar = getSupportActionBar();
+
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
 
         storeNameTV = findViewById(R.id.storeNameTV);
         storeDescriptionTV = findViewById(R.id.storeDescriptionTV);

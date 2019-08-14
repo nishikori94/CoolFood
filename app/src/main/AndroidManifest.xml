@@ -16,11 +16,18 @@
              />
         <activity
             android:name=".CheckoutActivity"
-            android:parentActivityName=".OfferDetailsActivity" />
+            android:parentActivityName=".OfferDetailsActivity"
+            android:theme="@style/Theme.Project.Activity1"
+            android:label="CoolFood"/>
         <activity
             android:name=".OfferDetailsActivity"
-            android:parentActivityName=".OffersActivity" />
+            android:parentActivityName=".OffersActivity"
+            android:theme="@style/Theme.Project.Activity1"
+            android:label="CoolFood"
+            />
         <activity android:name=".StoreDetailsActivity"
+            android:theme="@style/Theme.Project.Activity1"
+            android:label="CoolFood"
             />
         <activity android:name=".HomeActivity"
            />
@@ -38,6 +45,8 @@
         <activity
             android:name=".OffersActivity"
             android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.Project.Activity1"
+            android:label="CoolFood"
             />
     </application>
 
