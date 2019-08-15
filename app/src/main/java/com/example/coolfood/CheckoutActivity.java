@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -43,6 +44,8 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private String offerId = "";
     private String restaurantAddress = "";
+    private String storeId = "";
+    private String restaurantName = "";
     private int price = 0;
     DatabaseReference databaseReference;
     DatabaseReference orderDatabaseRef;
@@ -88,6 +91,8 @@ public class CheckoutActivity extends AppCompatActivity {
         if (intent != null) {
             offerId = extras.getString("offerId");
             restaurantAddress = extras.getString("restaurantAddress");
+            restaurantName = extras.getString("restaurantName");
+            storeId = extras.getString("storeId");
         }
         if (!offerId.isEmpty() && offerId != null) {
             databaseReference = FirebaseDatabase.getInstance().getReference("Offer");
@@ -169,5 +174,22 @@ public class CheckoutActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent intent = new Intent(this, OfferDetailsActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("storeId", storeId);
+                extras.putString("offerId", offerId);
+                extras.putString("restaurantAddress", restaurantAddress);
+                extras.putString("restaurantName", restaurantName);
+                intent.putExtras(extras);
+                startActivity(intent);
+                break;
+        }
+        return true;
     }
 }

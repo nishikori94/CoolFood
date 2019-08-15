@@ -37,6 +37,7 @@ public class OffersActivity extends AppCompatActivity {
     private String storeId = "";
     private String restaurantAddress = "";
 
+
     private TextView restaurantName;
 
     @Override
@@ -45,15 +46,14 @@ public class OffersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_offers);
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        restaurantName = (TextView) findViewById(R.id.restaurantNameTV);
+        restaurantName = findViewById(R.id.restaurantNameTV);
 
-        if (intent != null) {
+        if (intent != null && extras != null) {
             storeId = extras.getString("storeId");
             restaurantAddress = extras.getString("restaurantAddress");
             restaurantName.setText(getIntent().getStringExtra("restaurantName"));
         }
         if (!storeId.isEmpty() && storeId != null) {
-
             databaseReference = FirebaseDatabase.getInstance().getReference("Offer");
             Query query = databaseReference.orderByChild("restaurantId").equalTo(storeId);
             options = new FirebaseRecyclerOptions.Builder<Offer>().setQuery(query, Offer.class).build();
@@ -72,6 +72,7 @@ public class OffersActivity extends AppCompatActivity {
                             if (Integer.parseInt(model.getQuantity()) != 0) {
                                 Intent intent = new Intent(v.getContext(), OfferDetailsActivity.class);
                                 Bundle extras = new Bundle();
+                                extras.putString("storeId", storeId);
                                 extras.putString("offerId", adapter.getRef(position).getKey());
                                 extras.putString("restaurantAddress", restaurantAddress);
                                 extras.putString("restaurantName", getIntent().getStringExtra("restaurantName"));
@@ -111,10 +112,4 @@ public class OffersActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public void onOfferClick(int position) {
-//        offers.get(position);
-//        Intent intent = new Intent(this, OfferDetailsActivity.class);       //Ovde ide putExtra
-//        startActivity(intent);
-//    }
 }
