@@ -4,6 +4,7 @@ package com.example.coolfood;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,6 +32,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.WHITE;
 
 
 /**
@@ -95,12 +104,12 @@ public class OrdersActiveFragment extends Fragment {
                 holder.qrCodeIcon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showImage();
+                        showImage(model.getOrderId());
                     }
                 });
             }
 
-            public void showImage() {
+            public void showImage(String orderId) {
                 Dialog builder = new Dialog(v.getContext());
                 //builder.setCancelable(true);
                 builder.setCanceledOnTouchOutside(true);
@@ -115,7 +124,8 @@ public class OrdersActiveFragment extends Fragment {
                 });
 
                 ImageView imageView = new ImageView(v.getContext());
-                imageView.setImageResource(R.drawable.restaurant);
+                Bitmap qrcode = generateQRcode(orderId);
+                imageView.setImageBitmap(qrcode);
                 builder.addContentView(imageView, new RelativeLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.MATCH_PARENT));
@@ -138,6 +148,20 @@ public class OrdersActiveFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return v;
+    }
+
+    public Bitmap generateQRcode(String text) {
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        Bitmap bitmap = null;
+        try {
+            BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, 400, 400);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            bitmap = barcodeEncoder.createBitmap(bitMatrix);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+        return bitmap;
     }
 
 }
