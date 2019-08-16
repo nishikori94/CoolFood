@@ -34,10 +34,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-//        if(firebaseAuth.getCurrentUser() != null){
-//            Intent homeIntent = new Intent(this, HomeActivity.class);
-//            startActivity(homeIntent);
-//        }
+        if(firebaseAuth.getCurrentUser() != null){
+            Intent homeIntent = new Intent(this, HomeActivity.class);
+            startActivity(homeIntent);
+        }
 
         registerButton = findViewById(R.id.registerBtn);
         emailText = findViewById(R.id.email);

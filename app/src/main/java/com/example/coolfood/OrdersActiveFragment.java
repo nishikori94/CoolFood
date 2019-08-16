@@ -1,6 +1,10 @@
 package com.example.coolfood;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,17 +13,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.coolfood.adapter.OrderActiveViewHolder;
 import com.example.coolfood.adapter.OrderHistoryViewHolder;
+import com.example.coolfood.model.Offer;
 import com.example.coolfood.model.Order;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 /**
@@ -30,9 +41,11 @@ public class OrdersActiveFragment extends Fragment {
     private RecyclerView recyclerView;
 
     DatabaseReference databaseReference;
+    DatabaseReference databaseReferenceOffer;
     FirebaseRecyclerOptions<Order> options;
     FirebaseRecyclerAdapter<Order, OrderActiveViewHolder> adapter;
     private FirebaseAuth firebaseAuth;
+    private int quantity;
 
     public OrdersActiveFragment() {
         // Required empty public constructor
@@ -48,14 +61,65 @@ public class OrdersActiveFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("OrderActive");
-        Query query = databaseReference.orderByChild("user").equalTo(user.getEmail());
+        databaseReferenceOffer = FirebaseDatabase.getInstance().getReference().child("Offer");
+        final Query query = databaseReference.orderByChild("user").equalTo(user.getEmail());
         options = new FirebaseRecyclerOptions.Builder<Order>().setQuery(query, Order.class).build();
 
         adapter = new FirebaseRecyclerAdapter<Order, OrderActiveViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull OrderActiveViewHolder holder, int position, @NonNull Order model) {
+            protected void onBindViewHolder(@NonNull OrderActiveViewHolder holder, int position, @NonNull final Order model) {
                 holder.storeNameAO.setText(model.getStoreName());
                 holder.pickupTimeAO.setText(model.getPickupFrom() + " - " + model.getGetPickupUntil());
+                holder.cancelTV.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        databaseReferenceOffer.child(model.getOfferId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Offer offer = dataSnapshot.getValue(Offer.class);
+                                quantity = Integer.parseInt(offer.getQuantity()) + Integer.parseInt(model.getQuantity());
+                                databaseReferenceOffer.child(model.getOfferId()).child("quantity").setValue(Integer.toString(quantity));
+                                databaseReference.child(model.getOrderId()).removeValue();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    }
+                });
+
+                holder.qrCodeIcon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showImage();
+                    }
+                });
+            }
+
+            public void showImage() {
+                Dialog builder = new Dialog(v.getContext());
+                //builder.setCancelable(true);
+                builder.setCanceledOnTouchOutside(true);
+                builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                builder.getWindow().setBackgroundDrawable(
+                        new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        //nothing;
+                    }
+                });
+
+                ImageView imageView = new ImageView(v.getContext());
+                imageView.setImageResource(R.drawable.restaurant);
+                builder.addContentView(imageView, new RelativeLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT));
+                builder.show();
             }
 
             @NonNull

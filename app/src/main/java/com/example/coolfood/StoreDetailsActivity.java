@@ -28,9 +28,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class StoreDetailsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;

@@ -8,6 +8,7 @@ public class Order {
     private String getPickupUntil;
     private String price;
     private String offer;
+    private String offerId;
     private String date;
     private boolean reviewed;
     private String quantity;
@@ -18,7 +19,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String storeName, String user, String pickupFrom, String getPickupUntil, String price, String offer, String date, boolean reviewed, String quantity, boolean active, String restaurantId, String orderId) {
+    public Order(String storeName, String user, String pickupFrom, String getPickupUntil, String price, String offer, String date, boolean reviewed, String quantity, boolean active, String restaurantId, String orderId, String offerId) {
         this.storeName = storeName;
         this.user = user;
         this.pickupFrom = pickupFrom;
@@ -31,6 +32,7 @@ public class Order {
         this.active = active;
         this.restaurantId = restaurantId;
         this.orderId = orderId;
+        this.offerId = offerId;
     }
 
     public String getRestaurantId() {
@@ -129,5 +131,11 @@ public class Order {
         this.quantity = quantity;
     }
 
+    public String getOfferId() {
+        return offerId;
+    }
 
+    public void setOfferId(String offerId) {
+        this.offerId = offerId;
+    }
 }

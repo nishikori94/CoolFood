@@ -33,6 +33,19 @@
                 android:layout_alignStart="@+id/storeNameAO"
                 android:text="@string/pickup_time" />
 
+            <TextView
+                android:id="@+id/cancelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:textColor="@color/colorTextIcons"
+                android:layout_toLeftOf="@+id/qrCodeIcon"
+                android:layout_alignTop="@+id/storeNameAO"
+                android:layout_alignBottom="@+id/pickupTimeAO"
+                android:gravity="center"
+                android:layout_marginEnd="10dp"
+                />
+
             <ImageButton
                 android:tint="@color/colorTextIcons"
                 android:id="@+id/qrCodeIcon"

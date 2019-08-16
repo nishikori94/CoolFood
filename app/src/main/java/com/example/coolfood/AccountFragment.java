@@ -1,11 +1,27 @@
 package com.example.coolfood;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.coolfood.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -13,6 +29,16 @@ import android.view.ViewGroup;
  */
 public class AccountFragment extends Fragment {
 
+
+    public TextView emailTV;
+    public TextView logoutTV;
+    public TextView nameSurname;
+    public TextView phoneNumberTV;
+    public ImageView profileIV;
+
+    private FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
+    FirebaseUser user;
 
     public AccountFragment() {
         // Required empty public constructor
@@ -23,7 +49,52 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        emailTV = view.findViewById(R.id.emailTV);
+        logoutTV = view.findViewById(R.id.logoutTV);
+        nameSurname = view.findViewById(R.id.nameSurname);
+        phoneNumberTV = view.findViewById(R.id.phoneNumberTV);
+        profileIV = view.findViewById(R.id.profileIV);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("User");
+        databaseReference.orderByChild("email").equalTo(user.getEmail()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dsChild : dataSnapshot.getChildren()) {
+                    //MyModel mm = dsChild.getValue(MyModel.class);
+
+                    User user = dsChild.getValue(User.class);
+
+                    //child(dataSnapshot.getKey()).getValue(User.class);
+                    Picasso.get().load(user.getImgUrl()).into(profileIV);
+                    emailTV.setText(user.getEmail());
+                    nameSurname.setText(user.getName() + " " + user.getSurname());
+                    phoneNumberTV.setText(user.getNumber());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        logoutTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.signOut();
+                startActivity(new Intent(v.getContext(), LoginActivity.class));
+            }
+        });
+
+        return view;
+
+
     }
 
 }

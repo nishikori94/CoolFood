@@ -36,10 +36,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordText = findViewById(R.id.password);
 
         firebaseAuth = FirebaseAuth.getInstance();
-//        if(firebaseAuth.getCurrentUser() != null){
-//            Intent homeIntent = new Intent(this, HomeActivity.class);
-//            startActivity(homeIntent);
-//        }
+        if(firebaseAuth.getCurrentUser() != null){
+            Intent homeIntent = new Intent(this, HomeActivity.class);
+            startActivity(homeIntent);
+        }
 
         loginButton.setOnClickListener(this);
         signUpTextView.setOnClickListener(this);
