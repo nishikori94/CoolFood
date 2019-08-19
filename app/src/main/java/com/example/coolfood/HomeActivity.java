@@ -1,5 +1,6 @@
 package com.example.coolfood;
 
+import android.app.Dialog;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenu;
 import android.support.design.widget.BottomNavigationView;
@@ -9,13 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.coolfood.adapter.RestaurantAdapter;
 import com.example.coolfood.model.Restaurant;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
     private OrdersFragment ordersFragment;
     private AccountFragment accountFragment;
 
+    private static final String TAG = "HomeActivity";
+    private static final int ERROR_DIALOG_REQUEST = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +82,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        isServicesOk();
     }
 
     private void setFragment(Fragment fragment) {
@@ -83,5 +91,21 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+
+
+    public boolean isServicesOk(){
+        Log.d(TAG, "isServicesOk: checking google services version");
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+        if(available == ConnectionResult.SUCCESS){
+            Log.d(TAG, "isServicesOk: google play services is working");
+            return true;
+        } else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            Log.d(TAG, "isServicesOk: an error occured");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(this, available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        } else
+            Toast.makeText(this, "You can't make map request", Toast.LENGTH_SHORT).show();
+        return false;
+    }
 
 }
