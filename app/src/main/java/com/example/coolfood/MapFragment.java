@@ -21,8 +21,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,12 +40,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
 
-    private static final float DEFAULT_ZOOM = 15f;
+    private static final float DEFAULT_ZOOM = 10f;
 
     private Boolean locationPermissionGranted = false;
     private GoogleMap map;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
+
+
+    DatabaseReference databaseReference;
 
 
     public MapFragment() {
@@ -54,6 +63,25 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         getLocationPermission();
 
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    double latitude = Double.parseDouble(snapshot.child("lat").getValue().toString());
+                    double longitude = Double.parseDouble(snapshot.child("lng").getValue().toString());
+                    LatLng location = new LatLng(latitude,longitude);
+                    map.addMarker(new MarkerOptions().position(location).title(snapshot.child("name").getValue().toString()));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //getDeviceLocation();
         return view;
     }
 
