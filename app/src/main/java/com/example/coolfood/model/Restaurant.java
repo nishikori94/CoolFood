@@ -5,6 +5,7 @@ import com.google.maps.android.clustering.ClusterItem;
 
 public class Restaurant implements ClusterItem {
 
+    private String restaurantId;
     private String name;
     private String description;
     private String imgUrl;
@@ -15,13 +16,14 @@ public class Restaurant implements ClusterItem {
     public Restaurant() {
     }
 
-    public Restaurant(String name, String description, String imgUrl, String address, String lat, String lng) {
+    public Restaurant(String name, String description, String imgUrl, String address, String lat, String lng, String restaurantId) {
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
         this.address = address;
         this.lat = lat;
         this.lng = lng;
+        this.restaurantId = restaurantId;
     }
 
     public Restaurant(String name, String description, String lat, String lng, String imgUrl) {
@@ -30,6 +32,14 @@ public class Restaurant implements ClusterItem {
         this.lat = lat;
         this.lng = lng;
         this.imgUrl = imgUrl;
+    }
+
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public String getLat() {

@@ -2,6 +2,7 @@ package com.example.coolfood;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -134,8 +135,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         try {
                             String snippet = snapshot.child("description").getValue().toString();
                             Restaurant newClusterMarker = new Restaurant(snapshot.child("name").getValue().toString(), snapshot.child("description").getValue().toString(),
-                                    snapshot.child("lat").getValue().toString(), snapshot.child("lng").getValue().toString(),
-                                    snapshot.child("imgUrl").getValue().toString());
+                                    snapshot.child("imgUrl").getValue().toString(),
+                                    snapshot.child("address").getValue().toString(),
+                                    snapshot.child("lat").getValue().toString(), snapshot.child("lng").getValue().toString(), snapshot.child("restaurantId").getValue().toString());
                             mClusterManager.addItem(newClusterMarker);
                             //mClusterMarkers.add(newClusterMarker);
                         } catch (NullPointerException e) {
@@ -151,7 +153,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
                 }
             });
-
+            mGoogleMap.setOnInfoWindowClickListener(mClusterManager);
+            mClusterManager.setOnClusterItemInfoWindowClickListener(new ClusterManager.OnClusterItemInfoWindowClickListener<Restaurant>() {
+                @Override
+                public void onClusterItemInfoWindowClick(Restaurant restaurant) {
+                    Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
+                    Bundle extras = new Bundle();
+                    extras.putString("storeId", restaurant.getRestaurantId());
+                    extras.putString("restaurantName", restaurant.getName());
+                    extras.putString("restaurantAddress", restaurant.getAddress());
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
@@ -219,6 +233,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 //        setCameraView();
 
         mGoogleMap = map;
+        mGoogleMap.setMyLocationEnabled(true);
         getDeviceLocation();
         addMapMarkers();
     }
@@ -229,21 +244,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
         try {
             //if (locationPermissionGranted) {
-                Task location = fusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            Log.d(TAG, "onComplete: found location!");
-                            Location currentLocation = (Location) task.getResult();
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
-                        } else {
-                            Log.d(TAG, "onComplete: current location is null");
-                            Toast.makeText(getContext(), "Unable to get current location", Toast.LENGTH_SHORT).show();
-                        }
-
+            Task location = fusedLocationProviderClient.getLastLocation();
+            location.addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful() && task.getResult() != null) {
+                        Log.d(TAG, "onComplete: found location!");
+                        Location currentLocation = (Location) task.getResult();
+                        moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                    } else {
+                        Log.d(TAG, "onComplete: current location is null");
+                        Toast.makeText(getContext(), "Unable to get current location", Toast.LENGTH_SHORT).show();
                     }
-                });
+
+                }
+            });
             //}
         } catch (SecurityException e) {
             Log.d(TAG, "getDeviceLocation: Security exception:" + e.getMessage());
