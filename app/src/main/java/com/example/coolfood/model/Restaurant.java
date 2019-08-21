@@ -1,6 +1,9 @@
 package com.example.coolfood.model;
 
-public class Restaurant {
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.clustering.ClusterItem;
+
+public class Restaurant implements ClusterItem {
 
     private String name;
     private String description;
@@ -19,6 +22,14 @@ public class Restaurant {
         this.address = address;
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public Restaurant(String name, String description, String lat, String lng, String imgUrl) {
+        this.name = name;
+        this.description = description;
+        this.lat = lat;
+        this.lng = lng;
+        this.imgUrl = imgUrl;
     }
 
     public String getLat() {
@@ -67,5 +78,20 @@ public class Restaurant {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public LatLng getPosition() {
+        return new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+    }
+
+    @Override
+    public String getTitle() {
+        return name;
+    }
+
+    @Override
+    public String getSnippet() {
+        return description;
     }
 }
