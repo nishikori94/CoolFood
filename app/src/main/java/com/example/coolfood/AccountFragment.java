@@ -35,6 +35,7 @@ public class AccountFragment extends Fragment {
     public TextView nameSurname;
     public TextView phoneNumberTV;
     public ImageView profileIV;
+    public TextView settingsTV;
 
     private FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
@@ -57,6 +58,7 @@ public class AccountFragment extends Fragment {
         nameSurname = view.findViewById(R.id.nameSurname);
         phoneNumberTV = view.findViewById(R.id.phoneNumberTV);
         profileIV = view.findViewById(R.id.profileIV);
+        settingsTV = view.findViewById(R.id.settingsTV);
 
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
@@ -89,6 +91,13 @@ public class AccountFragment extends Fragment {
             public void onClick(View v) {
                 firebaseAuth.signOut();
                 startActivity(new Intent(v.getContext(), LoginActivity.class));
+            }
+        });
+
+        settingsTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), SettingsActivity.class));
             }
         });
 

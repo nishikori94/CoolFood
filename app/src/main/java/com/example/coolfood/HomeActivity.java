@@ -1,6 +1,10 @@
 package com.example.coolfood;
 
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationMenu;
 import android.support.design.widget.BottomNavigationView;
@@ -21,6 +25,9 @@ import com.example.coolfood.adapter.RestaurantAdapter;
 import com.example.coolfood.model.Restaurant;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +89,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        //isServicesOk();
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("MyNotifications", "MyNotifications", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+
+
+//        //isServicesOk();
     }
 
     private void setFragment(Fragment fragment) {
@@ -105,5 +121,7 @@ public class HomeActivity extends AppCompatActivity {
 //            Toast.makeText(this, "You can't make map request", Toast.LENGTH_SHORT).show();
 //        return false;
 //    }
+
+
 
 }
