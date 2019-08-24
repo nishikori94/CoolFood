@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="Steffano Ceranelli"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="21sp"
                 android:textStyle="bold"
@@ -56,10 +56,10 @@
                 android:drawableStart="@drawable/baseline_email_black_18dpx1"
                 android:drawableTint="@color/colorPrimaryDark"
                 android:gravity="center_vertical"
-                android:text="mafiaspageti@gmail.com"
+                android:text=""
                 android:textColor="@color/colorTextIcons"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 />
 
             <TextView
@@ -71,9 +71,9 @@
                 android:drawableTint="@color/colorPrimaryDark"
                 android:gravity="center_vertical"
                 android:textColor="@color/colorTextIcons"
-                android:text="+266 225 225"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"/>
+                android:text=""
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"/>
 
             <TextView
                 android:id="@+id/settingsTV"
@@ -84,9 +84,9 @@
                 android:drawableTint="@color/colorPrimaryDark"
                 android:gravity="center_vertical"
                 android:textColor="@color/colorTextIcons"
-                android:text="Settings"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"/>
+                android:text="@string/settings"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"/>
 
 
             <TextView
@@ -98,9 +98,9 @@
                 android:drawableTint="@color/colorPrimaryDark"
                 android:gravity="center_vertical"
                 android:textColor="@color/colorTextIcons"
-                android:text="Logout"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"/>
+                android:text="@string/logout"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"/>
 
         </LinearLayout>
 

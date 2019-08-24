@@ -50,8 +50,8 @@ public class OrdersFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager){
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
-        sectionsPagerAdapter.addFragment(new OrdersActiveFragment(), "Active");
-        sectionsPagerAdapter.addFragment(new OrdersHistoryFragment(), "History");
+        sectionsPagerAdapter.addFragment(new OrdersActiveFragment(), getResources().getString(R.string.active));
+        sectionsPagerAdapter.addFragment(new OrdersHistoryFragment(), getResources().getString(R.string.history));
         viewPager.setAdapter(sectionsPagerAdapter);
     }
 

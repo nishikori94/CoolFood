@@ -47,7 +47,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="3 left"
+                        android:text=""
                         android:textColor="@color/white" />
 
                     <TextView
@@ -55,7 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="new price"
+                        android:text=""
                         android:textColor="@color/white" />
 
                 </RelativeLayout>
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:padding="2dp"
-                    android:text="Naziv jela"
+                    android:text="@string/food_name"
                     android:textColor="@color/colorTextIcons"
                     android:textStyle="bold" />
 
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:padding="2dp"
-                    android:text="Vreme podizanja"
+                    android:text="@string/pickup_time"
                     android:textColor="@color/colorSecondaryText" />
 
             </LinearLayout>

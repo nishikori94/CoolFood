@@ -111,7 +111,6 @@ public class OrdersActiveFragment extends Fragment {
 
             public void showImage(String orderId) {
                 Dialog builder = new Dialog(v.getContext());
-                //builder.setCancelable(true);
                 builder.setCanceledOnTouchOutside(true);
                 builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 builder.getWindow().setBackgroundDrawable(
@@ -119,7 +118,6 @@ public class OrdersActiveFragment extends Fragment {
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface) {
-                        //nothing;
                     }
                 });
 

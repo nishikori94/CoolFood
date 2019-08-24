@@ -4,23 +4,21 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_marginVertical="20dp"
-        android:layout_width="match_parent"
         android:id="@+id/restaurantNameTV"
-        android:layout_height="wrap_content"
-        android:text="Restoran 1 - Kod Ceranidzea"
-        android:gravity="center_horizontal"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:textColor="@color/colorTextIcons"
-        />
-    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="@color/colorTextIcons"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/offersRV"
-        android:layout_below="@+id/restaurantNameTV"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
-
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurantNameTV"></android.support.v7.widget.RecyclerView>
 
 
 </RelativeLayout>

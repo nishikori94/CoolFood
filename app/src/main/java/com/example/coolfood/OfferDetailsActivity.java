@@ -87,7 +87,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
                     newPrice.setText(offer.getPrice() + " din.");
                     offerDescriptionTV.setText(offer.getDescription());
                     pickupTime.setText(offer.getDate() + "  /  " + offer.getPickupFrom() + " - " + offer.getPickupUntil());
-                    quantityTV.setText(offer.getQuantity() + " left");
+                    quantityTV.setText(offer.getQuantity() + " " + R.string.left);
                 }
 
                 @Override

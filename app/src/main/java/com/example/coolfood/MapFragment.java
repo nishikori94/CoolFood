@@ -47,27 +47,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private static final float DEFAULT_ZOOM = 10f;
     public static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
 
-    //widgets
-    private RecyclerView mUserListRecyclerView;
     private MapView mMapView;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
 
-    //vars
-
-    //private ArrayList<User> mUserList = new ArrayList<>();
-    //private ArrayList<UserLocation> mUserLocations = new ArrayList<>();
-    //private UserRecyclerAdapter mUserRecyclerAdapter;
     private GoogleMap mGoogleMap;
     DatabaseReference databaseReference;
 
-
-    //private UserLocation mUserPosition;
-    //private LatLngBounds mMapBoundary;
     private ClusterManager<Restaurant> mClusterManager;
     private ClusterManagerRenderer mClusterManagerRenderer;
     private ArrayList<Restaurant> mClusterMarkers = new ArrayList<>();
-
 
     public static MapFragment newInstance() {
         return new MapFragment();
@@ -76,28 +65,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (mUserLocations.size() == 0) { // make sure the list doesn't duplicate by navigating back
-//            if (getArguments() != null) {
-//                final ArrayList<User> users = getArguments().getParcelableArrayList(getString(R.string.intent_user_list));
-//                mUserList.addAll(users);
-//
-//                final ArrayList<UserLocation> locations = getArguments().getParcelableArrayList(getString(R.string.intent_user_locations));
-//                mUserLocations.addAll(locations);
-//            }
-//        }
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
-//        mUserListRecyclerView = view.findViewById(R.id.user_list_recycler_view);
         mMapView = view.findViewById(R.id.map);
 
-//        initUserListRecyclerView();
         initGoogleMap(savedInstanceState);
-
-//        setUserPosition();
 
         return view;
     }
@@ -106,17 +82,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private void addMapMarkers() {
         if (mGoogleMap != null) {
 
-            //if (mClusterManager == null) {
             mClusterManager = new ClusterManager<Restaurant>(getActivity().getApplicationContext(), mGoogleMap);
-            //}
-            //if (mClusterManagerRenderer == null) {
             mClusterManagerRenderer = new ClusterManagerRenderer(
                     getActivity(),
                     mGoogleMap,
                     mClusterManager
             );
             mClusterManager.setRenderer(mClusterManagerRenderer);
-            //}
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -124,14 +96,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    double latitude = Double.parseDouble(snapshot.child("lat").getValue().toString());
-//                    double longitude = Double.parseDouble(snapshot.child("lng").getValue().toString());
-//                    LatLng location = new LatLng(latitude, longitude);
-//                    map.addMarker(new MarkerOptions().position(location).title(snapshot.child("name").getValue().toString()));
-//
-
-
-                        //Log.d(TAG, "addMapMarkers: location: " + userLocation.getGeo_point().toString());
                         try {
                             String snippet = snapshot.child("description").getValue().toString();
                             Restaurant newClusterMarker = new Restaurant(snapshot.child("name").getValue().toString(), snapshot.child("description").getValue().toString(),
@@ -139,14 +103,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                                     snapshot.child("address").getValue().toString(),
                                     snapshot.child("lat").getValue().toString(), snapshot.child("lng").getValue().toString(), snapshot.child("restaurantId").getValue().toString());
                             mClusterManager.addItem(newClusterMarker);
-                            //mClusterMarkers.add(newClusterMarker);
                         } catch (NullPointerException e) {
                             Log.e(TAG, "addMapMarkers: NullPointerException: " + e.getMessage());
                         }
                     }
                     mClusterManager.cluster();
                 }
-
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -157,7 +119,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             mClusterManager.setOnClusterItemInfoWindowClickListener(new ClusterManager.OnClusterItemInfoWindowClickListener<Restaurant>() {
                 @Override
                 public void onClusterItemInfoWindowClick(Restaurant restaurant) {
-                    Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
+                    Intent intent = new Intent(getContext(), OffersActivity.class);
                     Bundle extras = new Bundle();
                     extras.putString("storeId", restaurant.getRestaurantId());
                     extras.putString("restaurantName", restaurant.getName());
@@ -254,7 +216,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
                     } else {
                         Log.d(TAG, "onComplete: current location is null");
-                        Toast.makeText(getContext(), "Unable to get current location", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.unable_location, Toast.LENGTH_SHORT).show();
                     }
 
                 }

@@ -79,7 +79,6 @@ public class CheckoutActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(true);
 
-
         final Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -124,7 +123,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     confirmBtn.setEnabled(true);
                     decQuantityIB.setColorFilter(getColor(R.color.colorPrimaryDark));
                 }
-                if(quantity == 1)
+                if (quantity == 1)
                     decQuantityIB.setColorFilter(getColor(R.color.grey));
                 if (quantity > 0 && quantity != 1) {
                     decQuantityIB.setEnabled(true);
@@ -136,7 +135,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 }
 
                 quantityCounterTV.setText(Integer.toString(quantity));
-                totalPriceTV.setText("Total: " + Integer.toString(quantity * price) + " din.");
+                totalPriceTV.setText(R.string.total + Integer.toString(quantity * price) + " din.");
             }
         });
 
@@ -155,7 +154,7 @@ public class CheckoutActivity extends AppCompatActivity {
                     incQuantityIB.setColorFilter(getColor(R.color.colorPrimaryDark));
                 }
                 quantityCounterTV.setText(Integer.toString(quantity));
-                totalPriceTV.setText("Total: " + Integer.toString(quantity * price) + " din.");
+                totalPriceTV.setText(R.string.total + Integer.toString(quantity * price) + " din.");
             }
         });
 
@@ -167,7 +166,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 orderDatabaseRef.child(uuid).setValue(order);
                 databaseReference.child(offerId).child("quantity").setValue(Integer.toString(maxQuantity - Integer.parseInt(quantityCounterTV.getText().toString())));
 
-                Toast.makeText(getApplicationContext(), "Thank you, order placed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.order_placed, Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(myIntent);
             }

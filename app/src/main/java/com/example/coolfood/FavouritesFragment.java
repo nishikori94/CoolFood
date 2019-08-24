@@ -31,7 +31,6 @@ import java.util.List;
  */
 public class FavouritesFragment extends Fragment {
 
-
     private RecyclerView recyclerView;
 
     FavouritesAdapter favouritesAdapter;
@@ -44,7 +43,6 @@ public class FavouritesFragment extends Fragment {
     public FavouritesFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,13 +65,6 @@ public class FavouritesFragment extends Fragment {
         setHasOptionsMenu(true);
         return view;
 
-
     }
 
-//    @Override
-//    public void onFavouritesClick(int position) {
-//        restaurantList.get(position);
-//        Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
-//        startActivity(intent);
-//    }
 }

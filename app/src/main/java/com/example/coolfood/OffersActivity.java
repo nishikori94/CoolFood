@@ -37,7 +37,6 @@ public class OffersActivity extends AppCompatActivity {
     private String storeId = "";
     private String restaurantAddress = "";
 
-
     private TextView restaurantName;
 
     @Override
@@ -79,7 +78,7 @@ public class OffersActivity extends AppCompatActivity {
                                 intent.putExtras(extras);
                                 startActivity(intent);
                             } else
-                                Toast.makeText(getApplicationContext(), "There is no more, sorry!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.no_more, Toast.LENGTH_SHORT).show();
                         }
 
                     });
@@ -93,13 +92,10 @@ public class OffersActivity extends AppCompatActivity {
 
                     return new OfferViewHolder(view);
                 }
-            }
-
-            ;
+            };
         }
 
         recyclerView = findViewById(R.id.offersRV);
-        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         ActionBar actionBar = this.getSupportActionBar();
@@ -108,8 +104,6 @@ public class OffersActivity extends AppCompatActivity {
 
         adapter.startListening();
         recyclerView.setAdapter(adapter);
-
-
     }
 
 }

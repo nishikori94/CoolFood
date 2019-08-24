@@ -90,15 +90,11 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("MyNotifications", "MyNotifications", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
-
-
-
-//        //isServicesOk();
     }
 
     private void setFragment(Fragment fragment) {
@@ -106,22 +102,5 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
     }
-
-//    public boolean isServicesOk(){
-//        Log.d(TAG, "isServicesOk: checking google services version");
-//        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
-//        if(available == ConnectionResult.SUCCESS){
-//            Log.d(TAG, "isServicesOk: google play services is working");
-//            return true;
-//        } else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
-//            Log.d(TAG, "isServicesOk: an error occured");
-//            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(this, available, ERROR_DIALOG_REQUEST);
-//            dialog.show();
-//        } else
-//            Toast.makeText(this, "You can't make map request", Toast.LENGTH_SHORT).show();
-//        return false;
-//    }
-
-
 
 }

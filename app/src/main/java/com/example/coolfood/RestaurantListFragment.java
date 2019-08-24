@@ -96,7 +96,7 @@ public class RestaurantListFragment extends Fragment {
                 });
 
                 int yellow = ResourcesCompat.getColor(getResources(), R.color.yellow, null);
-                if(localDB.isFavourite(adapter.getRef(position).getKey()))
+                if (localDB.isFavourite(adapter.getRef(position).getKey()))
                     holder.favBtn.setColorFilter(yellow);
 
                 holder.favBtn.setOnClickListener(new View.OnClickListener() {
@@ -115,14 +115,14 @@ public class RestaurantListFragment extends Fragment {
                         final FirebaseUser user = firebaseAuth.getCurrentUser();
                         favourites.setUser(user.getEmail());
 
-                        if(!localDB.isFavourite(adapter.getRef(position).getKey())){
+                        if (!localDB.isFavourite(adapter.getRef(position).getKey())) {
                             localDB.addToFavourites(favourites);
                             holder.favBtn.setColorFilter(yellow);
-                            Toast.makeText(getContext(), "Added to favourites!", Toast.LENGTH_SHORT);
-                        }else {
+                            Toast.makeText(getContext(), R.string.favourites_add, Toast.LENGTH_SHORT);
+                        } else {
                             localDB.removeFromFavourites(adapter.getRef(position).getKey());
                             holder.favBtn.setColorFilter(grey);
-                            Toast.makeText(getContext(), "Removed from favourites!", Toast.LENGTH_SHORT);
+                            Toast.makeText(getContext(), R.string.favourites_remove, Toast.LENGTH_SHORT);
                         }
                     }
                 });
@@ -204,7 +204,7 @@ public class RestaurantListFragment extends Fragment {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
 //                searchAdapter.stopListening();
-  //              adapter.startListening();
+                //              adapter.startListening();
                 recyclerView.setAdapter(adapter);
                 return true;
             }
@@ -267,7 +267,6 @@ public class RestaurantListFragment extends Fragment {
                 };
 
 
-
                 searchAdapter.startListening();
                 recyclerView.setAdapter(searchAdapter);
                 return true;
@@ -295,10 +294,4 @@ public class RestaurantListFragment extends Fragment {
         }
     }
 
-//    @Override
-//    public void onRestaurantClick(int position) {
-//        restaurantList.get(position);
-//        Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
-//        startActivity(intent);
-//    }
 }

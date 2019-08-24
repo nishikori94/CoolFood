@@ -65,11 +65,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String password = passwordText.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email address", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.enter_email_please, Toast.LENGTH_SHORT).show();
             return;
         }
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.enter_password_please, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     startActivity(homeIntent);
                 }
                 else{
-                    Toast.makeText(LoginActivity.this,"Email or password are wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,R.string.wrong, Toast.LENGTH_SHORT).show();
                 }
             }
         });

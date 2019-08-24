@@ -18,10 +18,8 @@ public class SettingsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(true);
 
-
-
         getFragmentManager().beginTransaction().add(R.id.fragment_container, new SettingsFragment()).commit();
     }
 
-    
+
 }

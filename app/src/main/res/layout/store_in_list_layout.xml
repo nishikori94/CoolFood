@@ -59,7 +59,7 @@
                     android:id="@+id/restaurantName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NAME"
+                    android:text=""
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     />
 
@@ -67,7 +67,7 @@
                     android:id="@+id/restaurantDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Description"
+                    android:text=""
                     android:layout_below="@+id/restaurantName"
                     />
             </RelativeLayout>

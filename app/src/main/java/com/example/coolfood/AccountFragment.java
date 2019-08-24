@@ -49,8 +49,6 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
         emailTV = view.findViewById(R.id.emailTV);
@@ -68,11 +66,8 @@ public class AccountFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dsChild : dataSnapshot.getChildren()) {
-                    //MyModel mm = dsChild.getValue(MyModel.class);
-
                     User user = dsChild.getValue(User.class);
 
-                    //child(dataSnapshot.getKey()).getValue(User.class);
                     Picasso.get().load(user.getImgUrl()).into(profileIV);
                     emailTV.setText(user.getEmail());
                     nameSurname.setText(user.getName() + " " + user.getSurname());

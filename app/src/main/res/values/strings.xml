@@ -12,7 +12,6 @@
     <string name="nav_more">More</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
     <string name="orders">Orders</string>
     <string name="account">Account</string>
@@ -23,11 +22,45 @@
     <string name="store_type">Store type</string>
     <string name="filter">Filter</string>
     <string name="store_name">Store name</string>
-    <string name="pickup_time">17:00 - 17:15</string>
     <string name="cancel">Cancel</string>
     <string name="comment">Comment</string>
 
     <string name="google_maps_key">AIzaSyDSts4rGTp5qxBncywb8nhfkES54nQlIE8</string>
+    <string name="subscribe">You are subscribed now</string>
+    <string name="unsubscribe">You are unsubscribed now</string>
+    <string name="quantity">quantity</string>
+    <string name="buy">BUY</string>
+    <string name="submit">Submit</string>
+    <string name="reviews0">0.0(0 reviews)</string>
+    <string name="reviewss">REVIEWS</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="food_name">Food name</string>
+    <string name="pickup_time">Pick up time</string>
+    <string name="username">Username</string>
+    <string name="reviews_small">reviews</string>
+    <string name="make_review" />
+    <string name="notifications_on"> Turn on notifications </string>
+    <string name="language">Language</string>
+    <string name="languageDesc">Choose your prefered language</string>
+    <string name="reset_password">Reset password</string>
+    <string name="enter_new_password">Enter new password</string>
+    <string name="total">Total:</string>
+    <string name="order_placed">Thank you, order placed!</string>
+    <string name="enter_email_please">Please enter email address</string>
+    <string name="enter_password_please">Please enter password</string>
+    <string name="wrong">Email or password are wrong</string>
+    <string name="unable_location">Unable to get current location</string>
+    <string name="left">left</string>
+    <string name="no_more">There is no more items, sorry!</string>
+    <string name="active">Active</string>
+    <string name="history">History</string>
+    <string name="favourites_add">Added to favourites!</string>
+    <string name="favourites_remove">Removed from favourites!</string>
+    <string name="went_wrong">Something went wrong. Please try again later:</string>
+    <string name="password_modified">Password Successfully Modified</string>
+    <string name="auth_failed">Authentification failed:</string>
+    <string name="not_registrated">Not registrated. Try again.</string>
 
     <string-array name="review_spinner">
         <item>Absolutely Cool</item>
@@ -45,5 +78,14 @@
         <item>1</item>
     </string-array>
 
+    <string-array name="listArray">
+        <item>English</item>
+        <item>Serbian</item>
+    </string-array>
+
+    <string-array name="listValues">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 
 </resources>

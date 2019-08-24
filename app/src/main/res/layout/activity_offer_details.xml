@@ -4,12 +4,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/buyBTN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pickupTimeAO"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/padding_page"
+        android:background="@drawable/buttonstyle"
+        android:text="@string/buy"
+        android:textColor="@color/white" />
+
     <ImageView
         android:id="@+id/offerImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@drawable/restaurant" />
+
+
+    <RelativeLayout
+        android:id="@+id/bannerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/offerImageView"
+        android:background="@color/colorPrimaryDarkOpacity75"
+        android:paddingStart="@dimen/padding_page"
+        android:paddingEnd="@dimen/padding_page">
+
+        <TextView
+            android:id="@+id/reviewNumTV"
+            style="style/TextAppearance.Material.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/favBtn"
+            android:text=""
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/oldPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text=""
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/newPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/oldPrice"
+            android:layout_alignParentEnd="true"
+            android:text=""
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/storeDescriptionTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bannerLayout"
+        android:padding="@dimen/padding_page"
+        android:text=""
+        android:textColor="@color/colorTextIcons" />
+
+
+    <TextView
+        android:id="@+id/pickupTimeAO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/storeDescriptionTV"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:drawableStart="@drawable/baseline_timer_black_24dp"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textColor="@color/colorTextIcons" />
 
     <TextView
         android:id="@+id/storeNameTV"
@@ -21,84 +93,9 @@
         android:layout_alignBottom="@id/bannerLayout"
         android:layout_margin="1dp"
         android:gravity="center"
-        android:text="Offer 1"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
-
-
-    <RelativeLayout
-        android:id="@+id/bannerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/offerImageView"
-        android:background="@color/colorPrimaryDarkOpacity75"
-        android:paddingStart="@dimen/padding_page"
-        android:paddingEnd="@dimen/padding_page"
-        >
-
-        <TextView
-            android:id="@+id/reviewNumTV"
-            style="style/TextAppearance.Material.Headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/favBtn"
-            android:text="3 left"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/oldPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="priceOld"
-            android:textColor="@color/white"
-            />
-
-        <TextView
-            android:id="@+id/newPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/oldPrice"
-            android:layout_alignParentEnd="true"
-            android:text="new price"
-            android:textColor="@color/white" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/storeDescriptionTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/bannerLayout"
-        android:padding="@dimen/padding_page"
-        android:textColor="@color/colorTextIcons"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " />
-
-
-        <TextView
-            android:id="@+id/pickupTimeAO"
-            android:layout_below="@+id/storeDescriptionTV"
-            android:gravity="center_vertical"
-            android:drawableStart="@drawable/baseline_timer_black_24dp"
-            android:textColor="@color/colorTextIcons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="tomorrow 14.40-15.00"
-            android:layout_centerHorizontal="true"/>
-
-    <Button
-        android:layout_margin="@dimen/padding_page"
-        android:id="@+id/buyBTN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pickupTimeAO"
-        android:text="BUY"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-android:background="@drawable/buttonstyle"
-        />
 
 </RelativeLayout>

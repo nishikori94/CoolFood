@@ -45,7 +45,7 @@
                         android:drawableStart="@drawable/baseline_restaurant_menu_black_18dp"
                         android:drawableTint="@color/colorTextIcons"
                         android:gravity="center_vertical"
-                        android:text="Offer 1"
+                        android:text=""
                         android:textColor="@color/colorTextIcons" />
 
                     <TextView
@@ -58,7 +58,7 @@
                         android:drawableStart="@drawable/baseline_location_on_black_18dp"
                         android:drawableTint="@color/colorTextIcons"
                         android:gravity="center_vertical"
-                        android:text="Address Bla Bla Bla"
+                        android:text=""
                         android:textColor="@color/colorTextIcons" />
 
                     <TextView
@@ -71,7 +71,7 @@
                         android:drawableStart="@drawable/baseline_timer_black_18dp"
                         android:drawableTint="@color/colorTextIcons"
                         android:gravity="center_vertical"
-                        android:text="17.00-17.20"
+                        android:text=""
                         android:textColor="@color/colorTextIcons" />
 
                     <LinearLayout
@@ -88,7 +88,7 @@
                             android:drawableStart="@drawable/baseline_exposure_plus_1_black_18dp"
                             android:drawableTint="@color/colorTextIcons"
                             android:gravity="center_vertical"
-                            android:text="quantity"
+                            android:text="@string/quantity"
                             android:textColor="@color/colorTextIcons" />
 
                         <ImageButton
@@ -108,7 +108,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="4dp"
                             android:layout_marginEnd="4dp"
-                            android:text="2"
+                            android:text=""
                             android:textColor="@color/colorTextIcons"
                             android:textSize="20sp" />
 
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:padding="@dimen/padding_page"
-                    android:text="Total: 0 din."
+                    android:text=""
                     android:textColor="@color/colorTextIcons"
                     android:textSize="20sp"
                     android:textStyle="bold" />

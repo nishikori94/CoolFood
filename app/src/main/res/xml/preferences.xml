@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <SwitchPreference
         android:key="notification"
-        android:title="Turn on notifications"
+        android:title="@string/notifications_on"
         android:summary="" />
+
+    <ListPreference     android:title="@string/language"
+        android:summary="@string/languageDesc"
+        android:key="language"
+        android:defaultValue="1"
+        android:entries="@array/listArray"
+        android:entryValues="@array/listValues" />
+    <Preference
+        app:key="resetPass"
+        app:title="@string/reset_password"/>
+
 
 </PreferenceScreen>

@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorTextIcons"
-                android:text="BLA BLA BLA BLA BLA" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/pickupTimePO"
@@ -30,14 +30,14 @@
                 android:textColor="@color/colorSecondaryText"
                 android:layout_below="@id/storeNamePO"
                 android:layout_alignStart="@+id/storeNamePO"
-                android:text="order date" />
+                android:text="" />
 
 
             <TextView
                 android:id="@+id/reviewOrderButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Make review!"
+                android:text="@string/make_review"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_alignTop="@+id/storeNamePO"
                 android:layout_alignBottom="@+id/pickupTimePO"

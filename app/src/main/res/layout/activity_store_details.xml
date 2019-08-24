@@ -28,7 +28,7 @@
             android:layout_marginEnd="-1dp"
             android:layout_marginBottom="-1dp"
             android:gravity="center"
-            android:text="Kod Cerashvilija"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/starButton"
-                android:text="0.0(0 reviews)"
+                android:text="@string/reviews0"
                 android:textColor="@color/white"
 
                 />
@@ -71,7 +71,7 @@
             android:layout_below="@+id/reviewsLayout"
             android:padding="@dimen/padding_page"
             android:textColor="@color/colorTextIcons"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. " />
+            android:text="" />
 
         <TextView
             android:id="@+id/reviewsTitleTV"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/storeDescriptionTV"
             android:gravity="center_horizontal"
-            android:text="REVIEWS"
+            android:text="@string/reviewss"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/colorTextIcons"/>

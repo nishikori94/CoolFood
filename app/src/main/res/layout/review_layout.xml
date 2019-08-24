@@ -20,7 +20,7 @@
                 android:id="@+id/userTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="UserName"
+                android:text="@string/username"
                 android:textColor="@color/colorTextIcons"
                 android:textStyle="bold"
                 android:background="@color/colorPrimaryLight"
@@ -38,7 +38,7 @@
                 android:id="@+id/reviewTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="reviews"
+                android:text="@string/reviews_small"
                 android:paddingStart="@dimen/padding_page"
                 android:paddingEnd="@dimen/padding_page"
                 android:textColor="@color/colorTextIcons"/>

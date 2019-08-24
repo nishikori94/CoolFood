@@ -43,7 +43,6 @@ public class OrdersHistoryFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,7 +104,6 @@ public class OrdersHistoryFragment extends Fragment {
                 return new OrderHistoryViewHolder(view);
             }
         };
-
 
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
