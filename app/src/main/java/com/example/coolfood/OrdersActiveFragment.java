@@ -3,14 +3,13 @@ package com.example.coolfood;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.coolfood.adapter.OrderActiveViewHolder;
-import com.example.coolfood.adapter.OrderHistoryViewHolder;
 import com.example.coolfood.model.Offer;
 import com.example.coolfood.model.Order;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -37,9 +35,6 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
-
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.WHITE;
 
 
 /**

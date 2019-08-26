@@ -2,21 +2,20 @@ package com.example.coolfood;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v4.view.MenuCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.view.MenuCompat;
+import androidx.core.view.MenuItemCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.SearchView;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,7 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.coolfood.adapter.RestaurantViewHolder;
 import com.example.coolfood.database.Database;
@@ -44,7 +43,7 @@ import com.squareup.picasso.Picasso;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestaurantListFragment extends Fragment {
+public class RestaurantListFragment extends Fragment implements FilterBottomSheetDialog.BottomSheetListener {
 
     private RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -294,4 +293,66 @@ public class RestaurantListFragment extends Fragment {
         }
     }
 
+//    @Override
+//    public void onButtonClicked(String minTime, String maxTime, String minQ, String maxQ) {
+//        filter(minTime, maxTime, minQ, maxQ);
+//    }
+
+//    private void filter(String minTime, String maxTime, String minQ, String maxQ) {
+//
+//        databaseReference = FirebaseDatabase.getInstance().getReference().child("Restaurant");
+//        Query query = databaseReference.orderByChild("name").startAt(s.toUpperCase()).endAt(s.toLowerCase() + "\uf8ff");
+//        options = new FirebaseRecyclerOptions.Builder<Restaurant>().setQuery(query, Restaurant.class).build();
+//        searchAdapter = new FirebaseRecyclerAdapter<Restaurant, RestaurantViewHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull RestaurantViewHolder holder, final int position, @NonNull final Restaurant model) {
+//                holder.nameTV.setText(model.getName());
+//                holder.descriptionTV.setText(model.getDescription());
+//                Picasso.get().load(model.getImgUrl()).into(holder.imageView, new Callback() {
+//                    @Override
+//                    public void onSuccess() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Exception e) {
+//                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//
+//                holder.itemView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(getContext(), OffersActivity.class);      //Ovde ide putExtra ko na UPP
+//                        Bundle extras = new Bundle();
+//                        extras.putString("storeId", adapter.getRef(position).getKey());
+//                        extras.putString("restaurantName", model.getName());
+//                        extras.putString("restaurantAddress", model.getAddress());
+//                        intent.putExtras(extras);
+//                        startActivity(intent);
+//                    }
+//                });
+//
+//                holder.infoImageButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(getContext(), StoreDetailsActivity.class);
+//                        intent.putExtra("storeId", adapter.getRef(position).getKey());
+//                        startActivity(intent);
+//                    }
+//                });
+//            }
+//
+//            @NonNull
+//            @Override
+//            public RestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+//                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.store_in_list_layout, viewGroup, false);
+//                return new RestaurantViewHolder(view);
+//            }
+//        };
+//
+//
+//        searchAdapter.startListening();
+//        recyclerView.setAdapter(searchAdapter);
+//    }
 }

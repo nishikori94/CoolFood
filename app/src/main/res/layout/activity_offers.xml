@@ -14,11 +14,11 @@
         android:textSize="25dp"
         android:textStyle="bold" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/offersRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/restaurantNameTV"></android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/restaurantNameTV"></androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>
