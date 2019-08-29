@@ -62,6 +62,8 @@
     <string name="auth_failed">Authentification failed:</string>
     <string name="not_registrated">Not registrated. Try again.</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string-array name="review_spinner">
         <item>Absolutely Cool</item>
         <item>Very Cool</item>
@@ -83,6 +85,7 @@
         <item>Serbian</item>
     </string-array>
 
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="listValues">
         <item>1</item>
         <item>2</item>

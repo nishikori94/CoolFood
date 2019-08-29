@@ -47,7 +47,10 @@ public class OrdersActiveAdapter extends RecyclerView.Adapter<OrdersActiveAdapte
     public void onBindViewHolder(@NonNull OrdersActiveAdapter.ViewHolder viewHolder, int i) {
         Order order = orderList.get(i);
         viewHolder.storeName.setText(order.getStoreName());
-        viewHolder.pickupTime.setText(order.getPickupFrom() + " - " + order.getGetPickupUntil());
+        final int mid = order.getPickupFrom().length() / 2; //get the middle of the String
+        String[] parts = {order.getPickupFrom().substring(0, mid), order.getPickupFrom().substring(mid)};
+        String[] parts1 = {order.getGetPickupUntil().substring(0, mid), order.getGetPickupUntil().substring(mid)};
+        viewHolder.pickupTime.setText(parts[0] + "." + parts[1] + " - " + parts1[0] +"."+parts1[1]);
     }
 
     @Override

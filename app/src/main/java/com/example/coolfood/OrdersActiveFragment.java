@@ -6,10 +6,12 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +75,10 @@ public class OrdersActiveFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull OrderActiveViewHolder holder, int position, @NonNull final Order model) {
                 holder.storeNameAO.setText(model.getStoreName());
-                holder.pickupTimeAO.setText(model.getPickupFrom() + " - " + model.getGetPickupUntil());
+                final int mid = model.getPickupFrom().length() / 2; //get the middle of the String
+                String[] parts = {model.getPickupFrom().substring(0, mid), model.getPickupFrom().substring(mid)};
+                String[] parts1 = {model.getGetPickupUntil().substring(0, mid), model.getGetPickupUntil().substring(mid)};
+                holder.pickupTimeAO.setText(parts[0] + "." + parts[1] + " - " + parts1[0] + "." + parts1[1]);
                 holder.cancelTV.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

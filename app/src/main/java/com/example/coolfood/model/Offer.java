@@ -3,8 +3,8 @@ package com.example.coolfood.model;
 public class Offer {
     private String quantity;
     private String name;
-    private String pickupFrom;
-    private String pickupUntil;
+    private Long pickupFrom;
+    private Long pickupUntil;
     private String price;
     private String restaurantId;
     private String description;
@@ -15,7 +15,7 @@ public class Offer {
     public Offer() {
     }
 
-    public Offer(String quantity, String name, String pickupFrom, String pickupUntil, String price, String restaurantId, String description, String oldPrice, String date, String imgUrl) {
+    public Offer(String quantity, String name, Long pickupFrom, Long pickupUntil, String price, String restaurantId, String description, String oldPrice, String date, String imgUrl) {
         this.quantity = quantity;
         this.name = name;
         this.pickupFrom = pickupFrom;
@@ -68,19 +68,19 @@ public class Offer {
         this.name = name;
     }
 
-    public String getPickupFrom() {
+    public Long getPickupFrom() {
         return pickupFrom;
     }
 
-    public void setPickupFrom(String pickupFrom) {
+    public void setPickupFrom(Long pickupFrom) {
         this.pickupFrom = pickupFrom;
     }
 
-    public String getPickupUntil() {
+    public Long getPickupUntil() {
         return pickupUntil;
     }
 
-    public void setPickupUntil(String pickupUntil) {
+    public void setPickupUntil(Long pickupUntil) {
         this.pickupUntil = pickupUntil;
     }
 

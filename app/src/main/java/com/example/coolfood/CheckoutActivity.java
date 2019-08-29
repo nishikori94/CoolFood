@@ -160,7 +160,7 @@ public class CheckoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String uuid = UUID.randomUUID().toString();
-                Order order = new Order(getIntent().getStringExtra("restaurantName"), user.getEmail(), offer.getPickupFrom(), offer.getPickupUntil(), Integer.toString(price * Integer.parseInt(quantityCounterTV.getText().toString())), offer.getName(), Calendar.getInstance().getTime().toString(), false, quantityCounterTV.getText().toString(), true, offer.getRestaurantId(), uuid, offerId);
+                Order order = new Order(getIntent().getStringExtra("restaurantName"), user.getEmail(), offer.getPickupFrom().toString(), offer.getPickupUntil().toString(), Integer.toString(price * Integer.parseInt(quantityCounterTV.getText().toString())), offer.getName(), Calendar.getInstance().getTime().toString(), false, quantityCounterTV.getText().toString(), true, offer.getRestaurantId(), uuid, offerId);
                 orderDatabaseRef.child(uuid).setValue(order);
                 databaseReference.child(offerId).child("quantity").setValue(Integer.toString(maxQuantity - Integer.parseInt(quantityCounterTV.getText().toString())));
 

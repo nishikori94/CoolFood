@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements FilterBottomSheetDialog.BottomSheetListener {
 
 
     private BottomNavigationView navigationView;
@@ -24,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     private FavouritesFragment favouritesFragment;
     private OrdersFragment ordersFragment;
     private AccountFragment accountFragment;
+    private OffersFragment offersFragment;
 
     private static final String TAG = "HomeActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -38,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         favouritesFragment = new FavouritesFragment();
         ordersFragment = new OrdersFragment();
         accountFragment = new AccountFragment();
+        offersFragment = new OffersFragment();
 
         frameLayout = findViewById(R.id.main_frame);
         navigationView = findViewById(R.id.bottom_navigation_id);
@@ -62,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
                         setFragment(ordersFragment);
                         return true;
                     case R.id.account_item:
-                        setFragment(accountFragment);
+                        setFragment(offersFragment);
                         return true;
                     default:
                         return false;
@@ -84,4 +86,9 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    @Override
+    public void onButtonClicked(String minTime, String maxTime) {
+        OffersFragment offersFragment = (OffersFragment) getSupportFragmentManager().findFragmentById(R.id.main_frame);
+        offersFragment.updateText(minTime, maxTime);
+    }
 }

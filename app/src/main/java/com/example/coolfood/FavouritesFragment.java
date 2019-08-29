@@ -50,7 +50,6 @@ public class FavouritesFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         // Inflate the layout for this fragment
-
         setHasOptionsMenu(true);
         return view;
 

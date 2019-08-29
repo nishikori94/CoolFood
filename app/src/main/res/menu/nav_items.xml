@@ -21,7 +21,10 @@
         android:title="@string/orders" />
     <item
         android:id="@+id/account_item"
-        android:actionLayout="@drawable/account1_img"
         android:title="@string/account"
+        android:visible="true"/>
+    <item
+        android:id="@+id/settings_item"
+        android:title="@string/settings"
         android:visible="true"/>
 </menu>

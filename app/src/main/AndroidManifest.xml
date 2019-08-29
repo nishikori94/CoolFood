@@ -9,14 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AccountActivity"></activity>
         <activity
             android:name=".SettingsActivity"
             android:label="CoolFood"
-            android:theme="@style/Theme.Project.Activity1"
-            android:parentActivityName=".HomeActivity"></activity>
-
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.Project.Activity1" />
         <activity android:name=".ReviewActivity" />
-
         <activity
             android:name=".CheckoutActivity"
             android:label="CoolFood"
@@ -27,7 +26,6 @@
             android:label="CoolFood"
             android:parentActivityName=".OffersActivity"
             android:theme="@style/Theme.Project.Activity1" />
-
         <activity
             android:name=".StoreDetailsActivity"
             android:label="CoolFood"
@@ -50,6 +48,14 @@
             android:label="CoolFood"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/Theme.Project.Activity1" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDSts4rGTp5qxBncywb8nhfkES54nQlIE8" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <service
             android:name=".firebase.MyMessagingService"
             android:exported="false">
@@ -57,22 +63,15 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDSts4rGTp5qxBncywb8nhfkES54nQlIE8" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 </manifest>

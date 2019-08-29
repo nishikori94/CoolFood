@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.coolfood.adapter.RestaurantViewHolder;
@@ -43,7 +44,7 @@ import com.squareup.picasso.Picasso;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestaurantListFragment extends Fragment implements FilterBottomSheetDialog.BottomSheetListener {
+public class RestaurantListFragment extends Fragment {
 
     private RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -194,6 +195,7 @@ public class RestaurantListFragment extends Fragment implements FilterBottomShee
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
 
+
         searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
@@ -285,13 +287,20 @@ public class RestaurantListFragment extends Fragment implements FilterBottomShee
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_filter:
-                FilterBottomSheetDialog filterBottomSheetDialog = new FilterBottomSheetDialog();
-                filterBottomSheetDialog.show(getFragmentManager(), "filterBottomSheet");
+                //FilterBottomSheetDialog filterBottomSheetDialog = new FilterBottomSheetDialog();
+                //filterBottomSheetDialog.show(getFragmentManager(), "filterBottomSheet");
                 return true;
+            case R.id.settings_item:
+                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                startActivity(intent);
+            case R.id.profile_item:
+                Intent intent1 = new Intent(getContext(), AccountActivity.class);
+                startActivity(intent1);
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 //    @Override
 //    public void onButtonClicked(String minTime, String maxTime, String minQ, String maxQ) {

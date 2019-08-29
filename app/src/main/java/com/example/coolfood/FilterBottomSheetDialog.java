@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 public class FilterBottomSheetDialog extends BottomSheetDialogFragment {
 
     private RangeSeekBar timeRSB;
@@ -33,6 +35,14 @@ public class FilterBottomSheetDialog extends BottomSheetDialogFragment {
         quantityRSB = view.findViewById(R.id.quantitySeekBar);
         quantityTV = view.findViewById(R.id.quantityTV);
         filterBtn = view.findViewById(R.id.filterBtn);
+
+        filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetListener.onButtonClicked(minTime, maxTime);
+                dismiss();
+            }
+        });
 
         timeTV.setText("00:00 - 24:00");
 
@@ -89,28 +99,24 @@ public class FilterBottomSheetDialog extends BottomSheetDialogFragment {
             }
         });
 
-        filterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetListener.onButtonClicked(minTime,maxTime, Integer.toString(quantityRSB.getMinThumbValue()), Integer.toString(quantityRSB.getMaxThumbValue()));
-                dismiss();
-            }
-        });
-
         return view;
     }
 
     public interface BottomSheetListener {
-        void onButtonClicked(String minTime, String maxTime, String minQ, String maxQ);
+        void onButtonClicked(String minTime, String maxTime);
     }
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
         try {
             bottomSheetListener = (BottomSheetListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement BottomSheetListener");
+            throw new ClassCastException(context.toString()
+                    + " must implement TextClicked");
         }
     }
 }

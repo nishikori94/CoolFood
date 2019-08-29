@@ -17,5 +17,16 @@
         android:title="Filter"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/profile_item"
+        android:title="Profile"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/settings_item"
+        android:title="Settings"
+        app:showAsAction="never"
+        />
+
+
 
 </menu>
