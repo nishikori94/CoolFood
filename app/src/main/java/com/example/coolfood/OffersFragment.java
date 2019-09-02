@@ -170,7 +170,7 @@ public class OffersFragment extends Fragment{
             @Override
             public boolean onQueryTextSubmit(String s) {
                 databaseReference = FirebaseDatabase.getInstance().getReference().child("Offer");
-                Query query = databaseReference.orderByChild("name").startAt(s +"\uf8ff");//startAt(s.toUpperCase()).endAt(s.toLowerCase() + "\uf8ff");
+                Query query = databaseReference.orderByChild("name").equalTo(s);//startAt(s.toUpperCase()).endAt(s.toLowerCase() + "\uf8ff");
                 options = new FirebaseRecyclerOptions.Builder<Offer>().setQuery(query, Offer.class).build();
                 searchAdapter = new FirebaseRecyclerAdapter<Offer, OfferViewHolder>(options) {
                     @Override
@@ -244,16 +244,21 @@ public class OffersFragment extends Fragment{
         }
     }
 
-    public void updateText(String minTime, String maxTime){
+    public void updateText(String minTime, String maxTime, String quantMin, String quantMax){
         // Here you have it
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Offer");
-        Query query = databaseReference.orderByChild("pickupFrom").startAt(Double.parseDouble(minTime));//startAt(s.toUpperCase()).endAt(s.toLowerCase() + "\uf8ff");
+        Query query = databaseReference.orderByChild("pickupFrom").startAt(Double.parseDouble(minTime)).endAt(Double.parseDouble(maxTime));//startAt(s.toUpperCase()).endAt(s.toLowerCase() + "\uf8ff");
         options = new FirebaseRecyclerOptions.Builder<Offer>().setQuery(query, Offer.class).build();
         searchAdapter = new FirebaseRecyclerAdapter<Offer, OfferViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull OfferViewHolder holder, final int position, @NonNull final Offer model) {
                 holder.textName.setText(model.getName());
-                holder.textPickup.setText(model.getPickupFrom() + " - " + model.getPickupUntil());
+
+                final int mid = model.getPickupFrom().toString().length() / 2; //get the middle of the String
+                String[] parts = {model.getPickupFrom().toString().substring(0, mid), model.getPickupFrom().toString().substring(mid)};
+                String[] parts1 = {model.getPickupUntil().toString().substring(0, mid), model.getPickupUntil().toString().substring(mid)};
+                holder.textPickup.setText(parts[0] + "." + parts[1] + " - " + parts1[0] +"."+parts1[1]);
+
                 holder.textPrice.setText(model.getPrice() + " din.");
                 holder.textQuantity.setText(model.getQuantity() + " left");
 

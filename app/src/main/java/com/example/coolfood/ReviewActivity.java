@@ -3,6 +3,9 @@ package com.example.coolfood;
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -37,7 +40,10 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
         cancelReviewBTN.setOnClickListener(this);
         reviewTextTV = findViewById(R.id.reviewTextTV);
 
+
+
         reviewSpinner = findViewById(R.id.review_spinner);
+        reviewSpinner.getBackground().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimaryDark), PorterDuff.Mode.SRC_ATOP);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.review_spinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         reviewSpinner.setAdapter(adapter);

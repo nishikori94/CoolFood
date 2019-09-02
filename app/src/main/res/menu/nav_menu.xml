@@ -14,10 +14,10 @@
         android:title="@string/nav_favourites" />
     <item
         android:id="@+id/orders_item"
-        android:icon="@drawable/outline_list_black_24dp"
+        android:icon="@drawable/purchase"
         android:title="@string/orders" />
     <item
         android:id="@+id/account_item"
-        android:icon="@drawable/outline_account_circle_black_24dp"
-        android:title="@string/account"/>
+        android:icon="@drawable/outline_list_black_24dp"
+        android:title="@string/offers"/>
 </menu>

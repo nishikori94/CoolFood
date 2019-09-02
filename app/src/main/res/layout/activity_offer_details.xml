@@ -33,13 +33,13 @@
         android:paddingEnd="@dimen/padding_page">
 
         <TextView
-            android:id="@+id/reviewNumTV"
+            android:id="@+id/quantTV"
             style="style/TextAppearance.Material.Headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/favBtn"
-            android:text=""
+            android:text="@string/left"
             android:textColor="@color/white" />
 
         <TextView

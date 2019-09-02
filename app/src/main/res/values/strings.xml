@@ -39,7 +39,7 @@
     <string name="pickup_time">Pick up time</string>
     <string name="username">Username</string>
     <string name="reviews_small">reviews</string>
-    <string name="make_review" />
+    <string name="make_review">Make review!</string>
     <string name="notifications_on"> Turn on notifications </string>
     <string name="language">Language</string>
     <string name="languageDesc">Choose your prefered language</string>
@@ -63,6 +63,8 @@
     <string name="not_registrated">Not registrated. Try again.</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="din0">0 din.</string>
+    <string name="offers">Offers</string>
 
     <string-array name="review_spinner">
         <item>Absolutely Cool</item>

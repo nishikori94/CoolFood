@@ -75,10 +75,12 @@ public class OrdersActiveFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull OrderActiveViewHolder holder, int position, @NonNull final Order model) {
                 holder.storeNameAO.setText(model.getStoreName());
-                final int mid = model.getPickupFrom().length() / 2; //get the middle of the String
-                String[] parts = {model.getPickupFrom().substring(0, mid), model.getPickupFrom().substring(mid)};
-                String[] parts1 = {model.getGetPickupUntil().substring(0, mid), model.getGetPickupUntil().substring(mid)};
-                holder.pickupTimeAO.setText(parts[0] + "." + parts[1] + " - " + parts1[0] + "." + parts1[1]);
+
+                final int mid = model.getPickupFrom().toString().length() / 2; //get the middle of the String
+                String[] parts = {model.getPickupFrom().toString().substring(0, mid), model.getPickupFrom().toString().substring(mid)};
+                String[] parts1 = {model.getGetPickupUntil().toString().substring(0, mid), model.getGetPickupUntil().toString().substring(mid)};
+                holder.pickupTimeAO.setText(parts[0] + "." + parts[1] + " - " + parts1[0] +"."+parts1[1]);
+
                 holder.cancelTV.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

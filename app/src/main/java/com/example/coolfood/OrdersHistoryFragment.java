@@ -78,8 +78,13 @@ public class OrdersHistoryFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull OrderHistoryViewHolder holder, int position, @NonNull final Order model) {
                 holder.storeNamePO.setText(model.getStoreName());
-                holder.pickupTimePO.setText(model.getPickupFrom() + " - " + model.getGetPickupUntil());
-                if (model.isReviewed() || exists)
+
+                final int mid = model.getPickupFrom().toString().length() / 2; //get the middle of the String
+                String[] parts = {model.getPickupFrom().toString().substring(0, mid), model.getPickupFrom().toString().substring(mid)};
+                String[] parts1 = {model.getGetPickupUntil().toString().substring(0, mid), model.getGetPickupUntil().toString().substring(mid)};
+                holder.pickupTimePO.setText(parts[0] + "." + parts[1] + " - " + parts1[0] +"."+parts1[1]);
+
+                if (model.isReviewed())
                     holder.reviewOrderButton.setVisibility(View.GONE);
                 else
                     holder.reviewOrderButton.setVisibility(View.VISIBLE);

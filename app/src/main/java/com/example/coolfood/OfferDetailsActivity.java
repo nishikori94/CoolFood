@@ -48,7 +48,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
         newPrice = findViewById(R.id.newPrice);
         offerDescriptionTV = findViewById(R.id.storeDescriptionTV);
         pickupTime = findViewById(R.id.pickupTimeAO);
-        quantityTV = findViewById(R.id.reviewNumTV);
+        quantityTV = findViewById(R.id.quantTV);
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -86,7 +86,7 @@ public class OfferDetailsActivity extends AppCompatActivity {
                     newPrice.setText(offer.getPrice() + " din.");
                     offerDescriptionTV.setText(offer.getDescription());
                     pickupTime.setText(offer.getDate() + "  /  " + offer.getPickupFrom() + " - " + offer.getPickupUntil());
-                    quantityTV.setText(offer.getQuantity() + " " + R.string.left);
+                    quantityTV.setText(offer.getQuantity() + " " + getResources().getString(R.string.left));
                 }
 
                 @Override

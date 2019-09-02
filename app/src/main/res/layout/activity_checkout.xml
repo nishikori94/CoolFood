@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:padding="@dimen/padding_page"
-                    android:text=""
+                    android:text="@string/din0"
                     android:textColor="@color/colorTextIcons"
                     android:textSize="20sp"
                     android:textStyle="bold" />

@@ -87,8 +87,8 @@ public class HomeActivity extends AppCompatActivity implements FilterBottomSheet
     }
 
     @Override
-    public void onButtonClicked(String minTime, String maxTime) {
+    public void onButtonClicked(String minTime, String maxTime, String quantMin, String quantMax) {
         OffersFragment offersFragment = (OffersFragment) getSupportFragmentManager().findFragmentById(R.id.main_frame);
-        offersFragment.updateText(minTime, maxTime);
+        offersFragment.updateText(minTime, maxTime, quantMin, quantMax);
     }
 }

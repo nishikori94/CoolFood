@@ -23,6 +23,8 @@ public class FilterBottomSheetDialog extends BottomSheetDialogFragment {
     private Button filterBtn;
     private String minTime;
     private String maxTime;
+    private String quantMin;
+    private String quantMax;
 
     private BottomSheetListener bottomSheetListener;
 
@@ -39,7 +41,7 @@ public class FilterBottomSheetDialog extends BottomSheetDialogFragment {
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomSheetListener.onButtonClicked(minTime, maxTime);
+                bottomSheetListener.onButtonClicked(minTime, maxTime, quantMin, quantMax);
                 dismiss();
             }
         });
@@ -95,6 +97,8 @@ public class FilterBottomSheetDialog extends BottomSheetDialogFragment {
 
             @Override
             public void onValueChanged(int i, int i1) {
+quantMin = Integer.toString(i);
+quantMax = Integer.toString(i1);
                 quantityTV.setText(i + " - " + i1);
             }
         });
@@ -103,7 +107,7 @@ public class FilterBottomSheetDialog extends BottomSheetDialogFragment {
     }
 
     public interface BottomSheetListener {
-        void onButtonClicked(String minTime, String maxTime);
+        void onButtonClicked(String minTime, String maxTime, String quantMin, String quantMax);
     }
 
 

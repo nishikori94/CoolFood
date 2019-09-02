@@ -58,5 +58,7 @@
     <string name="password_modified">Lozinka uspesno promenjena</string>
     <string name="auth_failed">autentifikacija neuspela, probajte opet. Razlog:</string>
     <string name="not_registrated">Niste registrovani. Probajte ponovo.</string>
+    <string name="din0">0 din.</string>
+    <string name="offers">Ponude</string>
 
 </resources>

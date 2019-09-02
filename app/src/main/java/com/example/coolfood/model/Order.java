@@ -4,8 +4,8 @@ public class Order {
 
     private String storeName;
     private String user;
-    private String pickupFrom;
-    private String getPickupUntil;
+    private Long pickupFrom;
+    private Long getPickupUntil;
     private String price;
     private String offer;
     private String offerId;
@@ -19,7 +19,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String storeName, String user, String pickupFrom, String getPickupUntil, String price, String offer, String date, boolean reviewed, String quantity, boolean active, String restaurantId, String orderId, String offerId) {
+    public Order(String storeName, String user, Long pickupFrom, Long getPickupUntil, String price, String offer, String date, boolean reviewed, String quantity, boolean active, String restaurantId, String orderId, String offerId) {
         this.storeName = storeName;
         this.user = user;
         this.pickupFrom = pickupFrom;
@@ -67,19 +67,19 @@ public class Order {
         this.storeName = storeName;
     }
 
-    public String getPickupFrom() {
+    public Long getPickupFrom() {
         return pickupFrom;
     }
 
-    public void setPickupFrom(String pickupFrom) {
+    public void setPickupFrom(Long pickupFrom) {
         this.pickupFrom = pickupFrom;
     }
 
-    public String getGetPickupUntil() {
+    public Long getGetPickupUntil() {
         return getPickupUntil;
     }
 
-    public void setGetPickupUntil(String getPickupUntil) {
+    public void setGetPickupUntil(Long getPickupUntil) {
         this.getPickupUntil = getPickupUntil;
     }
 

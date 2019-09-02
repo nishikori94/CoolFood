@@ -3,10 +3,14 @@ package com.example.coolfood;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -46,6 +50,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 10f;
     public static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
+    private Boolean locationPermissionGranted = false;
 
     private MapView mMapView;
 
@@ -73,7 +78,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         mMapView = view.findViewById(R.id.map);
 
-        initGoogleMap(savedInstanceState);
+            initGoogleMap(savedInstanceState);
 
         return view;
     }
@@ -128,6 +133,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     startActivity(intent);
                 }
             });
+
         }
     }
 
@@ -184,23 +190,53 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap map) {
-//        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-//                != PackageManager.PERMISSION_GRANTED
-//                && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        map.setMyLocationEnabled(true);
-//        mGoogleMap = map;
-//        setCameraView();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (ActivityCompat.checkSelfPermission
+                    (getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    &&
+                    ActivityCompat.checkSelfPermission
+                            (getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            {
+                requestPermissions(new String[]{
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                }, 1); // 1 is requestCode
+                //return;
+
+            }
+        }
         mGoogleMap = map;
-        mGoogleMap.setMyLocationEnabled(true);
-        getDeviceLocation();
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            getDeviceLocation();
+            mGoogleMap.setMyLocationEnabled(true);
+        } else {
+// Show rationale and request permission.
+        }
+
+
         addMapMarkers();
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
 
+            case 1:
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(getContext(),"PERMISSION_DENIED",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getContext(),"PERMISSION_GRANTED",Toast.LENGTH_SHORT).show();
+                    // permission granted do something
+                    getDeviceLocation();
+                    mGoogleMap.setMyLocationEnabled(true);
+                }
+                break;
+        }
+    }
     private void getDeviceLocation() {
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
@@ -249,4 +285,5 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         super.onLowMemory();
         mMapView.onLowMemory();
     }
+
 }
